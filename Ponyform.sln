@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ponyform", "Ponyform\Ponyform.csproj", "{70CB2BB3-47F8-4726-8FD5-E535FCFF0FA3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{70CB2BB3-47F8-4726-8FD5-E535FCFF0FA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70CB2BB3-47F8-4726-8FD5-E535FCFF0FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70CB2BB3-47F8-4726-8FD5-E535FCFF0FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70CB2BB3-47F8-4726-8FD5-E535FCFF0FA3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
