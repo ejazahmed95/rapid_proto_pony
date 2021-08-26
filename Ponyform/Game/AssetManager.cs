@@ -14,7 +14,7 @@ namespace Ponyform.Game
         }
            
         public void LoadAssets(){
-            pony_basic = content.Load<Texture2D>("Sprites/ball.png");
+            pony_basic = content.Load<Texture2D>("Sprites/ball");
         }
     }
 }

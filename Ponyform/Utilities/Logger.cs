@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Ponyform.Utilities {
     public enum LogLevel {
@@ -29,7 +30,7 @@ namespace Ponyform.Utilities {
 		
         public static void i(string tag, string message) {
             if (level > LogLevel.INFO) return;
-            Console.WriteLine($"[I] [{tag}]: {message}");
+            Debug.WriteLine($"[I] [{tag}]: {message}");
         }
 		
         public static void w(string tag, string message) {
