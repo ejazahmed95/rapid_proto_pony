@@ -5,8 +5,9 @@ namespace Ponyform.Game
 {
     public class GameInfra {
         public SpriteBatch SpriteBatch;
-        public const int GameWidth = 960;
-        public const int GameHeight = 540;
+        public const int GameWidth = 1920;
+        public const int GameHeight = 1080;
+        public float scale = 1f;
         private GraphicsDeviceManager _graphics;
         
         public GameInfra(Microsoft.Xna.Framework.Game ponyGame){
@@ -16,8 +17,8 @@ namespace Ponyform.Game
         }
 
         public void Load(){
-            _graphics.PreferredBackBufferWidth = GameWidth;
-            _graphics.PreferredBackBufferHeight = GameHeight;
+            _graphics.PreferredBackBufferWidth = (int)(GameWidth * scale);
+            _graphics.PreferredBackBufferHeight = (int)(GameHeight * scale);
             _graphics.ApplyChanges();
             
             SpriteBatch = new SpriteBatch(_graphics.GraphicsDevice);

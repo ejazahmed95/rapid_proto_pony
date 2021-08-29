@@ -8,6 +8,7 @@ namespace Ponyform.Game
         private ContentManager content;
         // Assets List
         public Texture2D pony_basic;
+        public Texture2D background;
 
         public AssetManager(ContentManager content){
             this.content = content;
@@ -15,6 +16,7 @@ namespace Ponyform.Game
            
         public void LoadAssets(){
             pony_basic = content.Load<Texture2D>("Sprites/ball");
+            background = content.Load<Texture2D>("Background/Background");
         }
     }
 }
