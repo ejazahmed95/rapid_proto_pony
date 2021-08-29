@@ -33,6 +33,12 @@ namespace Ponyform.UI {
             };
         }
 
+        public void AddAll(params GameObject[] objs){
+            foreach (var gameObject in objs){
+                Add(gameObject);
+            }
+        }
+
         public void Remove(GameObject obj){
             _children.Remove(obj);
         }
@@ -64,20 +70,61 @@ namespace Ponyform.UI {
 
         public void SetPosition(Vector2 newPos){
             pos = new Vector2(newPos.X, newPos.Y);
-            // pos.SetX(newPos.X);
-            // pos.SetY(newPos.Y);
+        }
+        
+        public void SetPosition(float x, float y){
+            pos = new Vector2(x, y);
+        }
+        
+        public void SetPosition(float x, float y, Alignment alignment){
+            SetPosition(new Vector2(x, y), alignment);
+        }
+        
+        public void SetPosition(Vector2 newPos, Alignment alignment){
+            var x = newPos.X;
+            var y = newPos.Y;
+            switch (alignment){
+                case Alignment.TOP_LEFT:
+                case Alignment.LEFT:
+                case Alignment.BOTTOM_LEFT:
+                    break;
+                case Alignment.CENTER:
+                case Alignment.TOP:
+                case Alignment.BOTTOM:
+                    x -= size.X / 2;
+                    break;
+                case Alignment.TOP_RIGHT:
+                case Alignment.RIGHT:
+                case Alignment.BOTTOM_RIGHT:
+                    x -= size.X;
+                    break;
+            }
+            switch (alignment){
+                case Alignment.TOP_LEFT:
+                case Alignment.TOP:
+                case Alignment.TOP_RIGHT:
+                    break;
+                case Alignment.LEFT:
+                case Alignment.CENTER:
+                case Alignment.RIGHT:
+                    y -= size.Y;
+                    break;
+                case Alignment.BOTTOM:
+                    y -= size.Y;
+                    break;
+            }
+            pos = new Vector2(x, y);
         }
 
         public void SetSize(Vector2 newSize){
-            size.SetX(newSize.X);
-            size.SetY(newSize.Y);
+            size = new Vector2(newSize.X, newSize.Y);
         }
 
         public void SetWidth(float width){
-            size.SetX(width);
+            size = new Vector2(width, size.Y);
         }
         public void SetHeight(float height){
-            size.SetY(height);
+            size = new Vector2(size.X, height);
         }
 
         #endregion
