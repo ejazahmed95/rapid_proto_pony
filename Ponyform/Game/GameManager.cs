@@ -15,12 +15,12 @@ namespace Ponyform.Game
         public GameObject gameRoot;
         private Environment env;
         private Pony pony;
-        private readonly EventManager eventManager;
+        // private readonly EventManager eventManager;
 
         public GameManager(){ 
             gameInfra = DI.Get<GameInfra>();
             assetManager = DI.Get<AssetManager>();
-            eventManager = DI.Get<EventManager>();
+            // eventManager = DI.Get<EventManager>();
             gameRoot = new EmptyGameObject();
         }
 
@@ -33,7 +33,7 @@ namespace Ponyform.Game
             // Add to Gameroot
             gameRoot.Add(env);
             gameRoot.Add(pony);
-            
+            pony.SetPosition(gameInfra.GetGameWidth()*0.4f, gameInfra.GetGameHeight()*0.4f);
         }
 
         public void Update(GameTime gameTime){
