@@ -1,34 +1,40 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Ponyform.Event {
     public class EventManager {
-        private Dictionary<GameEvent, List<IEventListener>> eventListeners;
+        private Dictionary<GameEvent, List<Action<object>>> eventListeners;
 
         public EventManager(){
-            eventListeners = new Dictionary<GameEvent, List<IEventListener>>();
+            eventListeners = new Dictionary<GameEvent, List<Action<object>>>();
         }
 
-        public void RegisterListener(GameEvent e, IEventListener listener){
+        /**
+         * Register a function call for handling the event data
+         */
+        public void RegisterListener(GameEvent e, Action<object> listener){
             if (!eventListeners.TryGetValue(e, out var listeners)){
-                eventListeners[e] = new List<IEventListener>();
+                eventListeners[e] = new List<Action<object>>();
                 listeners = eventListeners[e];
             }
             listeners.Add(listener);
         }
 
+        /**
+         * SendEvent sends and any event related data
+         */
         public void SendEvent(GameEvent e, object data){
             var listeners = eventListeners[e];
             foreach (var listener in listeners){
-                listener.OnGameEvent(data);
+                listener(data);
             }
         }
     }
 
+    /**
+     * Enum class with the list of ALL in game events
+     */
     public enum GameEvent {
         Feed_Button_Clicked,
-    }
-
-    public interface IEventListener {
-        void OnGameEvent(object data);
     }
 }
