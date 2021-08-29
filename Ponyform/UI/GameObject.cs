@@ -59,6 +59,7 @@ namespace Ponyform.UI {
         
         public virtual void Draw(SpriteBatch batch, Vector2 origin){
             Logger.t("GO Draw", $"Game object drawing: {GetType()}");
+            globalPosition = origin + pos;
             foreach (var go in _children){
                 go.Draw(batch, origin + pos);
             }

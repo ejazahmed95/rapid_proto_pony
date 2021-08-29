@@ -4,9 +4,9 @@ using Ponyform.Game;
 
 namespace Ponyform.UI {
     public class Image: GameObject {
-        private Texture2D _tex;
-        private Color _color = Color.White;
-        private float scale;
+        protected Texture2D _tex;
+        protected Color _color = Color.White;
+        protected float scale;
         public Image(Texture2D texture){
             scale = DI.Get<GameInfra>().scale;
             this._tex = texture;
