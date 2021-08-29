@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Ponyform.Event;
 using Ponyform.Game;
 using Ponyform.Utilities;
 
@@ -23,6 +24,7 @@ namespace Ponyform
             DI.Register(new GameInfra(this));
             DI.Register<AssetManager>(new AssetManager(Content));
             DI.Register(new SoundManager());
+            DI.Register(new EventManager());
             _gameManager = new GameManager(); 
             DI.Register(_gameManager);
         }

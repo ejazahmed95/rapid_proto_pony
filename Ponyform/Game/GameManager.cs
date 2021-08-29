@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Ponyform.Event;
 using Ponyform.Game.View;
 using Ponyform.UI;
 using Ponyform.Utilities;
@@ -14,10 +15,12 @@ namespace Ponyform.Game
         public GameObject gameRoot;
         private Environment env;
         private Pony pony;
+        private readonly EventManager eventManager;
 
         public GameManager(){ 
             gameInfra = DI.Get<GameInfra>();
             assetManager = DI.Get<AssetManager>();
+            eventManager = DI.Get<EventManager>();
             gameRoot = new EmptyGameObject();
         }
 
