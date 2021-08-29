@@ -1,18 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Input;
+using System;
 
 namespace Ponyform.UI
 {
-    public class DraggableIcon : Image
+    class Button : Image
     {
         #region Fields
 
         private MouseStateExtended _mouseStateExtended;
-
-        private Point _currentMouse;
-
-        private Point _previousMouse;
 
         private bool _holding = false;
 
@@ -20,10 +17,10 @@ namespace Ponyform.UI
 
         #region Properties
 
-        //set the color when it is not being held 
+        public event EventHandler Click;
+
         public Color DefaultColor { get; set; }
 
-        //set the color when it is being held 
         public Color HoldingColor { get; set; }
 
         public Rectangle Rectangle
@@ -35,7 +32,7 @@ namespace Ponyform.UI
         }
         #endregion
 
-        public DraggableIcon(Texture2D texture) : base(texture)
+        public Button(Texture2D texture) : base(texture)
         {
             DefaultColor = Color.White;
             HoldingColor = Color.White;
@@ -44,26 +41,15 @@ namespace Ponyform.UI
         public override void Update(GameTime gameTime)
         {
             _mouseStateExtended = MouseExtended.GetState();
-            _currentMouse = _mouseStateExtended.Position;
-            Rectangle mouseRectangle = new Rectangle(_mouseStateExtended.X, _mouseStateExtended.Y, 1, 1);
 
+            Rectangle mouseRectangle = new Rectangle(_mouseStateExtended.X, _mouseStateExtended.Y, 1, 1);
             if (mouseRectangle.Intersects(Rectangle) && _mouseStateExtended.WasButtonJustDown(MouseButton.Left))
             {
                 _holding = true;
-                _color = HoldingColor;
+                Click?.Invoke(this, new EventArgs());
             }
-            if (_mouseStateExtended.WasButtonJustUp(MouseButton.Left))
-            {
-                _holding = false;
-                _color = DefaultColor;
-            }
+            if (_mouseStateExtended.WasButtonJustUp(MouseButton.Left)) _holding = false;
 
-            if (_holding)
-            {
-                SetPosition(pos + (_currentMouse - _previousMouse).ToVector2());
-            }
-
-            _previousMouse = _currentMouse;
             base.Update(gameTime);
         }
     }
