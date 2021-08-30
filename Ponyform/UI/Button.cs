@@ -2,6 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Input;
 using System;
+using Ponyform.Event;
+using Ponyform.UI;
+using Ponyform.Utilities;
+using Ponyform.Game;
 
 namespace Ponyform.UI
 {
@@ -11,13 +15,17 @@ namespace Ponyform.UI
 
         private MouseStateExtended _mouseStateExtended;
 
-        private bool _holding = false;
+        private readonly EventManager _em;
+
+        private GameEvent _gameEvent;
+
+        private Action<object> _listener;
+
+        private object _data;
 
         #endregion
 
         #region Properties
-
-        public event EventHandler Click;
 
         public Color DefaultColor { get; set; }
 
@@ -32,10 +40,18 @@ namespace Ponyform.UI
         }
         #endregion
 
-        public Button(Texture2D texture) : base(texture)
+        public Button(Texture2D texture, GameEvent gameEvent, Action<object> listener, object data) : base(texture)
         {
             DefaultColor = Color.White;
             HoldingColor = Color.White;
+
+            _em = DI.Get<EventManager>();
+            _gameEvent = gameEvent;
+            _listener = listener;
+            _data = data;
+
+            _em.RegisterListener(gameEvent, listener);
+
         }
 
         public override void Update(GameTime gameTime)
@@ -45,10 +61,15 @@ namespace Ponyform.UI
             Rectangle mouseRectangle = new Rectangle(_mouseStateExtended.X, _mouseStateExtended.Y, 1, 1);
             if (mouseRectangle.Intersects(Rectangle) && _mouseStateExtended.WasButtonJustDown(MouseButton.Left))
             {
-                _holding = true;
-                Click?.Invoke(this, new EventArgs());
+                _color = HoldingColor;
+
+                _em.SendEvent(_gameEvent, _data);
+
             }
-            if (_mouseStateExtended.WasButtonJustUp(MouseButton.Left)) _holding = false;
+            if (_mouseStateExtended.WasButtonJustUp(MouseButton.Left))
+            {
+                _color = DefaultColor;
+            }
 
             base.Update(gameTime);
         }
