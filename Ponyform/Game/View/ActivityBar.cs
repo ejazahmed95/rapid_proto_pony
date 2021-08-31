@@ -12,7 +12,10 @@ namespace Ponyform.Game.View {
         private Button feed, groom;
 
         private ActivityType _currentActivity = ActivityType.NONE;
-        
+
+        private int _horizontalAmount = 0;
+        private int _verticalAmount = 0;
+
         public ActivityBar(){
             _am = DI.Get<AssetManager>();
             _em = DI.Get<EventManager>();
@@ -26,10 +29,22 @@ namespace Ponyform.Game.View {
             feed = new Button(_am.button_feed, OnFeedClick);
             groom = new Button(_am.button_groom, OnGroomClick);
             AddAll(bg, feed, groom);
+
+            _horizontalAmount += 1;
+            _verticalAmount += 2;
         }
 
         private void arrangeView(){
-            groom.SetPosition(0, 100);
+            float xPos = 0, yPos = 0;
+            float leftAlignmentPosition = bg.size.X * 0.3f;
+            float iconHeight = bg.size.Y / (_verticalAmount + 1);
+
+            xPos += leftAlignmentPosition;
+            yPos += iconHeight;
+
+            feed.SetPosition(xPos, yPos, Alignment.LEFT);
+            yPos += iconHeight;
+            groom.SetPosition(xPos, yPos, Alignment.LEFT);
             
             SetSize(new Vector2(bg.size.X, bg.size.Y));
         }

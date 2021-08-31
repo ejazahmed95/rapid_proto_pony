@@ -36,6 +36,8 @@ namespace Ponyform.Game
             posters = content.Load<Texture2D>("Background/Posters");
             wall = content.Load<Texture2D>("Background/Wall");
             window = content.Load<Texture2D>("Background/Window");
+
+            background = content.Load<Texture2D>("Background/Background");
             
             // Pony
             pony_mid = content.Load<Texture2D>("Pony/Pony_Mid");
