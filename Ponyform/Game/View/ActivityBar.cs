@@ -1,4 +1,5 @@
-﻿using Ponyform.Event;
+﻿using Microsoft.Xna.Framework;
+using Ponyform.Event;
 using Ponyform.UI;
 
 namespace Ponyform.Game.View {
@@ -28,6 +29,8 @@ namespace Ponyform.Game.View {
 
         private void arrangeView(){
             groom.SetPosition(0, 100);
+            
+            SetSize(new Vector2(bg.size.X, bg.size.Y));
         }
 
         private void onFeedClick() {

@@ -113,7 +113,9 @@ namespace Ponyform.UI {
                 case Alignment.RIGHT:
                     y -= size.Y/2;
                     break;
+                case Alignment.BOTTOM_LEFT:
                 case Alignment.BOTTOM:
+                case Alignment.BOTTOM_RIGHT:
                     y -= size.Y;
                     break;
             }

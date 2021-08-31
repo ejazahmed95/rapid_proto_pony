@@ -1,4 +1,6 @@
-﻿using Ponyform.UI;
+﻿using Microsoft.Xna.Framework;
+using MonoGame.Extended;
+using Ponyform.UI;
 
 namespace Ponyform.Game.View {
     public class FoodBar: GameObject {
@@ -20,7 +22,7 @@ namespace Ponyform.Game.View {
             milk = new DraggableIcon(_am.food_milk);
             grass = new DraggableIcon(_am.food_grass);
             
-            AddAll(bg, apple, blueberry, milk, grass);
+            AddAll( bg, apple, blueberry, milk, grass);
         }
 
         private void arrangeView() {
@@ -32,6 +34,8 @@ namespace Ponyform.Game.View {
             milk.SetPosition(xPos, yPos);
             xPos += iconWidth;
             grass.SetPosition(xPos, yPos);
+            
+            SetSize(new Vector2(bg.size.X, bg.size.Y));
         }
     }
 }

@@ -50,7 +50,8 @@ namespace Ponyform.Game
 
         private void arrangeView() {
             pony.SetPosition(gameInfra.GetGameWidth()*0.4f, gameInfra.GetGameHeight()*0.25f);
-            aBar.SetPosition(gameInfra.GetGameWidth() - 200, 0, Alignment.TOP_RIGHT);
+            aBar.SetPosition(gameInfra.GetGameWidth(), 0, Alignment.TOP_RIGHT);
+            foodBar.SetPosition(0, gameInfra.GetGameHeight(), Alignment.BOTTOM_LEFT);
         }
 
         public void Update(GameTime gameTime){
