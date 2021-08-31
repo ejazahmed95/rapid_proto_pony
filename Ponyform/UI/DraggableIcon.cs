@@ -51,9 +51,6 @@ namespace Ponyform.UI
             if (mouseRectangle.Intersects(Rectangle) && _mouseStateExtended.IsButtonDown(MouseButton.Left))
             {
                 if (!_holding) _holding = true;
-
-                Debug.WriteLine("held");
-
                 _color = HoldingColor;
             }
             if (_mouseStateExtended.IsButtonUp(MouseButton.Left))

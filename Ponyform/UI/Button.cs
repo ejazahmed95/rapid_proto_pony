@@ -76,11 +76,8 @@ namespace Ponyform.UI
                     _holding = false;
                     _color = DefaultColor;
                     _onClickAction();
-                    Debug.WriteLine("clicked");
                 }
-
             }
-
             base.Update(gameTime);
         }
     }
