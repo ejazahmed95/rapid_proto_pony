@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Ponyform.Event;
 using Ponyform.UI;
+using Ponyform.Utilities;
 
 namespace Ponyform.Game.View {
     public class ActivityBar: GameObject {
@@ -22,8 +23,8 @@ namespace Ponyform.Game.View {
 
         private void createView(){
             bg = new Image(_am.button_side_bg);
-            feed = new Button(_am.button_feed, onFeedClick);
-            groom = new Button(_am.button_groom, onGroomClick);
+            feed = new Button(_am.button_feed, OnFeedClick);
+            groom = new Button(_am.button_groom, OnGroomClick);
             AddAll(bg, feed, groom);
         }
 
@@ -33,21 +34,33 @@ namespace Ponyform.Game.View {
             SetSize(new Vector2(bg.size.X, bg.size.Y));
         }
 
-        private void onFeedClick() {
+        private void OnFeedClick() {
+            Logger.i("ActivityBar", "Feed button clicked!");
             if (_currentActivity == ActivityType.FEED) {
-                clearActivity();
+                ClearActivity();
                 return;
             }
-            _em.SendEvent(GameEvent.ActivitySet, new ActivitySelectInfo());
+            _currentActivity = ActivityType.FEED;
+            SendActivitySelectEvent();
         }
         
-        private void onGroomClick(){
-            
+        private void OnGroomClick(){
+            Logger.i("ActivityBar", "Groom button clicked!");
+            if (_currentActivity == ActivityType.GROOM) {
+                ClearActivity();
+                return;
+            }
+            _currentActivity = ActivityType.GROOM;
+            SendActivitySelectEvent();
         }
 
-        private void clearActivity() {
+        private void ClearActivity() {
             _currentActivity = ActivityType.NONE;
-            _em.SendEvent(GameEvent.ActivityCleared, new object());
+            SendActivitySelectEvent();
+        }
+
+        private void SendActivitySelectEvent(){
+            _em.SendEvent(GameEvent.ActivitySet, new ActivitySelectInfo{type = _currentActivity});
         }
     }
 }
