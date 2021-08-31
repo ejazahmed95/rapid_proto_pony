@@ -6,13 +6,14 @@ using Ponyform.UI;
 
 namespace Ponyform.Game.View {
     public class Environment: GameObject {
-        private Image calendar, carpet, desk, floor, flower1, flower2, light, posters, wall, window;
+        private Image bg, calendar, carpet, desk, floor, flower1, flower2, light, posters, wall, window;
 
         private AssetManager am;
         private GameInfra _gameInfra;
         public Environment(){
             am = DI.Get<AssetManager>();
             _gameInfra = DI.Get<GameInfra>();
+            bg = new Image(am.background);
             calendar = new Image(am.calendar);
             carpet = new Image(am.carpet);
             desk = new Image(am.desk);
@@ -23,7 +24,12 @@ namespace Ponyform.Game.View {
             posters = new Image(am.posters);
             wall = new Image(am.wall);
             window = new Image(am.window);
-            
+
+            drawBg();
+        }
+
+        private void drawBg(){
+            /*
             AddAll(wall, floor, desk, flower1, flower2);
             wall.AddAll(posters, window);
             floor.Add(carpet);
@@ -39,6 +45,9 @@ namespace Ponyform.Game.View {
             // Positioning
             floor.SetPosition(new Vector2(0, height*1f - floor.size.Y));
             desk.SetPosition(new Vector2(width*Layout.deskX, height*Layout.deskY));
+            /*/
+            Add(bg);
+            //*/
         }
 
         public override void Draw(SpriteBatch batch, Vector2 origin){

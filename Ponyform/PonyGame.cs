@@ -50,7 +50,6 @@ namespace Ponyform
 
         protected override void Update(GameTime gameTime)
         {
-            Console.WriteLine("calling update");
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();

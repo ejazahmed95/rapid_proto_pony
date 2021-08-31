@@ -23,18 +23,11 @@ namespace Ponyform.Event {
         /**
          * SendEvent sends and any event related data
          */
-        public void SendEvent(GameEvent e, object data){
+        public void SendEvent(GameEvent e, object data = null){
             var listeners = eventListeners[e];
             foreach (var listener in listeners){
                 listener(data);
             }
         }
-    }
-
-    /**
-     * Enum class with the list of ALL in game events
-     */
-    public enum GameEvent {
-        Feed_Button_Clicked,
     }
 }

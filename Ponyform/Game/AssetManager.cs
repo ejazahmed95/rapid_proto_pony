@@ -12,7 +12,9 @@ namespace Ponyform.Game
         public Texture2D pony_mid, pony_eye_1, pony_eye_2, pony_eye_3;
         
         // UI
-        
+        public Texture2D button_feed, button_groom;
+        public Texture2D food_apple, food_bb, food_grass, food_milk;
+        public Texture2D button_side_bg, button_bottom_bg;
 
         public AssetManager(ContentManager content){
             this.content = content;
@@ -20,6 +22,7 @@ namespace Ponyform.Game
            
         public void LoadAssets(){
             // Environment
+            background = content.Load<Texture2D>("Background/Background");
             calendar = content.Load<Texture2D>("Background/Calender");
             carpet = content.Load<Texture2D>("Background/Carpet");
             desk = content.Load<Texture2D>("Background/Desk");
@@ -40,6 +43,14 @@ namespace Ponyform.Game
             pony_eye_3 = content.Load<Texture2D>("Pony/Eye3");
 
             // UI
+            button_feed = content.Load<Texture2D>("UI/UI_Feed");
+            button_groom = content.Load<Texture2D>("UI/UI_Groom");
+            food_apple = content.Load<Texture2D>("UI/UI_Food_Apple");
+            food_bb = content.Load<Texture2D>("UI/UI_Food_Blueberry");
+            food_grass = content.Load<Texture2D>("UI/UI_Food_Grass");
+            food_milk = content.Load<Texture2D>("UI/UI_Food_Milk");
+            button_side_bg = content.Load<Texture2D>("UI/UI_side");
+            button_bottom_bg = content.Load<Texture2D>("UI/UI_FoodBar");
         }
     }
 }

@@ -19,6 +19,8 @@ namespace Ponyform.UI {
         private readonly List<GameObject> _children;
         private GameObject _parent;
 
+        private bool enabled = true;
+
         public GameObject(){
             _children = new List<GameObject>();
             pos = new Vector2();
@@ -61,6 +63,7 @@ namespace Ponyform.UI {
             Logger.t("GO Draw", $"Game object drawing: {GetType()}");
             globalPosition = origin + pos;
             foreach (var go in _children){
+                if(!go.Enabled()) continue;
                 go.Draw(batch, origin + pos);
             }
         }
@@ -108,9 +111,11 @@ namespace Ponyform.UI {
                 case Alignment.LEFT:
                 case Alignment.CENTER:
                 case Alignment.RIGHT:
-                    y -= size.Y;
+                    y -= size.Y/2;
                     break;
+                case Alignment.BOTTOM_LEFT:
                 case Alignment.BOTTOM:
+                case Alignment.BOTTOM_RIGHT:
                     y -= size.Y;
                     break;
             }
@@ -128,8 +133,17 @@ namespace Ponyform.UI {
             size = new Vector2(size.X, height);
         }
 
+        public void SetVisibility(bool enabled){
+            this.enabled = enabled;
+        }
+
+        bool Enabled(){
+            return enabled;
+        }
+        
         #endregion
     }
+    
     
     public class EmptyGameObject: GameObject {}
     

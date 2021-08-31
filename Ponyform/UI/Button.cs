@@ -2,9 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Input;
 using System;
+using System.Diagnostics;
 using Ponyform.Event;
-using Ponyform.UI;
-using Ponyform.Utilities;
 using Ponyform.Game;
 
 namespace Ponyform.UI
@@ -19,9 +18,12 @@ namespace Ponyform.UI
 
         private GameEvent _gameEvent;
 
+        private Action _onClickAction;
         private Action<object> _listener;
 
         private object _data;
+
+        private bool _holding = false;
 
         #endregion
 
@@ -40,17 +42,16 @@ namespace Ponyform.UI
         }
         #endregion
 
-        public Button(Texture2D texture, GameEvent gameEvent, Action<object> listener, object data) : base(texture)
+        public Button(Texture2D texture, Action onClick) : base(texture)
         {
             DefaultColor = Color.White;
             HoldingColor = Color.White;
 
             _em = DI.Get<EventManager>();
-            _gameEvent = gameEvent;
-            _listener = listener;
-            _data = data;
-
-            _em.RegisterListener(gameEvent, listener);
+            _onClickAction = onClick;
+            // _gameEvent = gameEvent;
+            // _listener = listener;
+            // _data = data;
 
         }
 
@@ -59,18 +60,24 @@ namespace Ponyform.UI
             _mouseStateExtended = MouseExtended.GetState();
 
             Rectangle mouseRectangle = new Rectangle(_mouseStateExtended.X, _mouseStateExtended.Y, 1, 1);
-            if (mouseRectangle.Intersects(Rectangle) && _mouseStateExtended.WasButtonJustDown(MouseButton.Left))
+            if (mouseRectangle.Intersects(Rectangle) && _mouseStateExtended.IsButtonDown(MouseButton.Left))
             {
-                _color = HoldingColor;
-
-                _em.SendEvent(_gameEvent, _data);
-
+                if (!_holding)
+                {
+                    _holding = true;
+                    _color = HoldingColor;
+                }
+                
             }
-            if (_mouseStateExtended.WasButtonJustUp(MouseButton.Left))
+            if (_mouseStateExtended.IsButtonUp(MouseButton.Left))
             {
-                _color = DefaultColor;
+                if (_holding)
+                {
+                    _holding = false;
+                    _color = DefaultColor;
+                    _onClickAction();
+                }
             }
-
             base.Update(gameTime);
         }
     }

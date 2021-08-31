@@ -18,17 +18,18 @@ namespace Ponyform.Game.View {
         public Pony(){
             _am = DI.Get<AssetManager>();
             _em = DI.Get<EventManager>();
+            var infra = DI.Get<GameInfra>();
             
             pony_mid = new Image(_am.pony_mid);
             Add(pony_mid);
             
             eyes = new PonyEyes();
-            eyes.SetPosition(60, 60);
+            eyes.SetPosition(0.05f*infra.GetGameWidth(), 0.123f*infra.GetGameHeight());
             Add(eyes);
 
-            _em.RegisterListener(GameEvent.Feed_Button_Clicked, OnFeedButtonClick);
+            _em.RegisterListener(GameEvent.ActivitySet, OnFeedButtonClick);
             
-            _em.SendEvent(GameEvent.Feed_Button_Clicked, new EatingInfo{foodItem = Food.Milk});
+            // _em.SendEvent(GameEvent.Feed_Button_Clicked, new EatingInfo{foodItem = Food.Milk});
         }
 
         #region Event Handlers
