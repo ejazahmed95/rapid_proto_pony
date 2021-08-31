@@ -3,8 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Input;
 using System;
 using Ponyform.Event;
-using Ponyform.UI;
-using Ponyform.Utilities;
 using Ponyform.Game;
 
 namespace Ponyform.UI
@@ -19,6 +17,7 @@ namespace Ponyform.UI
 
         private GameEvent _gameEvent;
 
+        private Action _onClickAction;
         private Action<object> _listener;
 
         private object _data;
@@ -40,17 +39,16 @@ namespace Ponyform.UI
         }
         #endregion
 
-        public Button(Texture2D texture, GameEvent gameEvent, Action<object> listener, object data) : base(texture)
+        public Button(Texture2D texture, Action onClick) : base(texture)
         {
             DefaultColor = Color.White;
             HoldingColor = Color.White;
 
             _em = DI.Get<EventManager>();
-            _gameEvent = gameEvent;
-            _listener = listener;
-            _data = data;
-
-            _em.RegisterListener(gameEvent, listener);
+            _onClickAction = onClick;
+            // _gameEvent = gameEvent;
+            // _listener = listener;
+            // _data = data;
 
         }
 
@@ -63,12 +61,14 @@ namespace Ponyform.UI
             {
                 _color = HoldingColor;
 
-                _em.SendEvent(_gameEvent, _data);
-
+                // _em.SendEvent(_gameEvent, _data);
+                
             }
             if (_mouseStateExtended.WasButtonJustUp(MouseButton.Left))
             {
                 _color = DefaultColor;
+                _onClickAction();
+
             }
 
             base.Update(gameTime);

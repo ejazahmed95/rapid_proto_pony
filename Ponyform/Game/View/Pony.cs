@@ -26,9 +26,9 @@ namespace Ponyform.Game.View {
             eyes.SetPosition(60, 60);
             Add(eyes);
 
-            _em.RegisterListener(GameEvent.Feed_Button_Clicked, OnFeedButtonClick);
+            _em.RegisterListener(GameEvent.ActivitySet, OnFeedButtonClick);
             
-            _em.SendEvent(GameEvent.Feed_Button_Clicked, new EatingInfo{foodItem = Food.Milk});
+            // _em.SendEvent(GameEvent.Feed_Button_Clicked, new EatingInfo{foodItem = Food.Milk});
         }
 
         #region Event Handlers
