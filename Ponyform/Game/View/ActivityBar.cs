@@ -8,6 +8,8 @@ namespace Ponyform.Game.View {
 
         private Image bg;
         private Button feed, groom;
+
+        private ActivityType _currentActivity = ActivityType.NONE;
         
         public ActivityBar(){
             _am = DI.Get<AssetManager>();
@@ -28,12 +30,21 @@ namespace Ponyform.Game.View {
             groom.SetPosition(0, 100);
         }
 
-        private void onFeedClick(){
-            
+        private void onFeedClick() {
+            if (_currentActivity == ActivityType.FEED) {
+                clearActivity();
+                return;
+            }
+            _em.SendEvent(GameEvent.ActivitySet, new ActivitySelectInfo());
         }
         
         private void onGroomClick(){
             
+        }
+
+        private void clearActivity() {
+            _currentActivity = ActivityType.NONE;
+            _em.SendEvent(GameEvent.ActivityCleared, new object());
         }
     }
 }

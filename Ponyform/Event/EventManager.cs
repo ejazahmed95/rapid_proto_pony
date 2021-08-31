@@ -23,7 +23,7 @@ namespace Ponyform.Event {
         /**
          * SendEvent sends and any event related data
          */
-        public void SendEvent(GameEvent e, object data){
+        public void SendEvent(GameEvent e, object data = null){
             var listeners = eventListeners[e];
             foreach (var listener in listeners){
                 listener(data);

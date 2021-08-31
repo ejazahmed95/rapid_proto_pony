@@ -1,4 +1,8 @@
 ﻿namespace Ponyform.Event {
+    public struct ActivitySelectInfo {
+        public ActivityType type;
+    }
+    
     public struct EatingInfo {
         public Food foodItem;
     }
@@ -14,4 +18,9 @@
     public enum GroomPart {
         Hair, Body, Tail
     }
+    
+    public enum ActivityType {
+        NONE, FEED, GROOM
+    }
+    
 }
