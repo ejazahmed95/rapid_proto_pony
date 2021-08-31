@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Input;
 using System;
+using System.Diagnostics;
 using Ponyform.Event;
 using Ponyform.Game;
 
@@ -21,6 +22,8 @@ namespace Ponyform.UI
         private Action<object> _listener;
 
         private object _data;
+
+        private bool _holding = false;
 
         #endregion
 
@@ -57,17 +60,24 @@ namespace Ponyform.UI
             _mouseStateExtended = MouseExtended.GetState();
 
             Rectangle mouseRectangle = new Rectangle(_mouseStateExtended.X, _mouseStateExtended.Y, 1, 1);
-            if (mouseRectangle.Intersects(Rectangle) && _mouseStateExtended.WasButtonJustDown(MouseButton.Left))
+            if (mouseRectangle.Intersects(Rectangle) && _mouseStateExtended.IsButtonDown(MouseButton.Left))
             {
-                _color = HoldingColor;
-
-                // _em.SendEvent(_gameEvent, _data);
+                if (!_holding)
+                {
+                    _holding = true;
+                    _color = HoldingColor;
+                }
                 
             }
-            if (_mouseStateExtended.WasButtonJustUp(MouseButton.Left))
+            if (_mouseStateExtended.IsButtonUp(MouseButton.Left))
             {
-                _color = DefaultColor;
-                _onClickAction();
+                if (_holding)
+                {
+                    _holding = false;
+                    _color = DefaultColor;
+                    _onClickAction();
+                    Debug.WriteLine("clicked");
+                }
 
             }
 

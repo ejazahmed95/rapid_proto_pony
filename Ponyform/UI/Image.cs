@@ -18,5 +18,6 @@ namespace Ponyform.UI {
             batch.Draw(_tex, pos + origin, null, _color, 0, new Vector2(), scale, 0, 0);
             base.Draw(batch, origin);
         }
+
     }
 }
