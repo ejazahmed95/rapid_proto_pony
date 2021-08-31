@@ -7,6 +7,9 @@ namespace Ponyform.UI {
         protected Texture2D _tex;
         protected Color _color = Color.White;
         protected float scale;
+        
+        protected Rectangle Rectangle => new Rectangle((int)globalPosition.X, (int)globalPosition.Y, (int)size.X, (int)size.Y);
+        
         public Image(Texture2D texture){
             scale = DI.Get<GameInfra>().scale;
             this._tex = texture;

@@ -39,7 +39,7 @@ namespace Ponyform.Utilities {
         }
         public static void e(string tag, string message) {
             if (level > LogLevel.ERROR) return;
-            Console.WriteLine($"[E] [{tag}]: {message}");
+            Debug.WriteLine($"[E] [{tag}]: {message}");
         }
         public static void f(string tag, string message) {
             // if (level > LogLevel.INFO) return;
