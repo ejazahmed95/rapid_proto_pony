@@ -31,8 +31,10 @@ namespace Ponyform.Game.View {
             Add(eyes);
             CreateView();
             ArrangeView();
-            _em.RegisterListener(GameEvent.ActivitySet, OnFeedButtonClick);
-            
+            _em.RegisterListener(GameEvent.StartedEating, OnFeedButtonClick);
+            _em.RegisterListener(GameEvent.StoppedEating, onStoppedEating);
+
+
             // _em.SendEvent(GameEvent.Feed_Button_Clicked, new EatingInfo{foodItem = Food.Milk});
         }
 
@@ -63,7 +65,7 @@ namespace Ponyform.Game.View {
             if (!Utils.TryConvertVal(data, out EatingInfo info)){
                 return;
             }
-
+            Logger.i("Pony", $"Started Eating, food = {info.foodItem }");
             switch (info.foodItem){
                 case Food.Apple:
                     eyes.Blink(1);
@@ -77,6 +79,11 @@ namespace Ponyform.Game.View {
                 default:
                     break;
             }
+        }
+
+        private void onStoppedEating(object data)
+        {
+            Logger.i("Pony", "Stopped Eating");
         }
 
         #endregion

@@ -21,6 +21,20 @@ namespace Ponyform.Game.View {
             createView();
             arrangeView();
             _em.RegisterListener(GameEvent.ActivitySet, onActivitySet);
+
+            Pony pony = DI.Get<Pony>();
+            apple.RegisterCollider(pony.mouthBox,  
+                () => _em.SendEvent(GameEvent.StartedEating, new EatingInfo { foodItem = Food.Apple }), 
+                () => _em.SendEvent(GameEvent.StoppedEating));
+            blueberry.RegisterCollider(pony.mouthBox,
+                () => _em.SendEvent(GameEvent.StartedEating, new EatingInfo { foodItem = Food.Blueberry }),
+                () => _em.SendEvent(GameEvent.StoppedEating));
+            milk.RegisterCollider(pony.mouthBox,
+                () => _em.SendEvent(GameEvent.StartedEating, new EatingInfo { foodItem = Food.Milk }),
+                () => _em.SendEvent(GameEvent.StoppedEating));
+            grass.RegisterCollider(pony.mouthBox,
+                () => _em.SendEvent(GameEvent.StartedEating, new EatingInfo { foodItem = Food.Grass }),
+                () => _em.SendEvent(GameEvent.StoppedEating));
         }
 
         private void createView() {
