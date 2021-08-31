@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Input;
 
+using System.Diagnostics;
+
 namespace Ponyform.UI
 {
     public class DraggableIcon : Image
@@ -56,6 +58,8 @@ namespace Ponyform.UI
             {
                 _holding = false;
                 _color = DefaultColor;
+
+                Debug.WriteLine(pos);
             }
 
             if (_holding)
