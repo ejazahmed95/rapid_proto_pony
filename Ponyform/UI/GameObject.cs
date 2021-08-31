@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
+using Ponyform.Game;
 using Ponyform.Utilities;
 
 namespace Ponyform.UI {
@@ -20,8 +21,12 @@ namespace Ponyform.UI {
         public GameObject _parent { get; private set; }
 
         private bool enabled = true;
+        protected bool debug = false;
+
+        public GameInfra gameInfra;
 
         public GameObject(){
+            gameInfra = DI.Get<GameInfra>();
             _children = new List<GameObject>();
             pos = new Vector2();
             size = new Vector2();
@@ -61,11 +66,22 @@ namespace Ponyform.UI {
         
         public virtual void Draw(SpriteBatch batch, Vector2 origin){
             // Logger.t("GO Draw", $"Game object drawing: {GetType()}");
+            if (debug) drawDebug();
             globalPosition = origin + pos;
             foreach (var go in _children){
                 if(!go.Enabled()) continue;
                 go.Draw(batch, origin + pos);
             }
+        }
+
+        private void drawDebug(){
+            // Logger.i("GO", "Debugging information");
+            if ((int) size.X == 0 || (int) size.Y == 0){
+                Logger.e("GO", $"debugging a zero size game object, width={size.X}, height = {size.Y}");
+                return;
+            }
+
+            gameInfra.SpriteBatch.Draw(gameInfra.debugTexture, new Rectangle((int)globalPosition.X, (int)globalPosition.Y, (int)size.X, (int)size.Y), Color.White);
         }
 
         #endregion
