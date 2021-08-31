@@ -24,7 +24,6 @@ namespace Ponyform.UI
         public Color DefaultColor { get; set; }
         public Color HoldingColor { get; set; }
         private BtnState _state = BtnState.Idle;
-        private Rectangle Rectangle => new Rectangle((int)globalPosition.X, (int)globalPosition.Y, (int)size.X, (int)size.Y);
 
         #endregion
 
@@ -37,42 +36,6 @@ namespace Ponyform.UI
             _mouseListener.MouseClicked += OnMouseClick;
             _onClickAction = onClick;
             
-        }
-
-        public override void Update(GameTime gameTime){
-            // _mouseStateExtended = MouseExtended.GetState();
-            //
-            // Rectangle mouseRectangle = new Rectangle(_mouseStateExtended.X, _mouseStateExtended.Y, 1, 1);
-            // if (mouseRectangle.Intersects(Rectangle)){
-            //     if (_mouseStateExtended.WasButtonJustDown(MouseButton.Left)){
-            //         _state = BtnState.Held;
-            //     } else if (_state == BtnState.Held && _mouseStateExtended.WasButtonJustUp(MouseButton.Left)){
-            //         _onClickAction();
-            //         _state = BtnState.Idle;
-            //     }
-            //
-            //     SetColorForState(_state);
-            // }
-            // else{
-            //     _state = BtnState.Idle;
-            //     SetColorForState(_state);
-            // }
-            
-            // if (mouseRectangle.Intersects(Rectangle) && _mouseStateExtended.WasButtonJustDown(MouseButton.Left))
-            // {
-            //     _color = HoldingColor;
-            //
-            //     // _em.SendEvent(_gameEvent, _data);
-            //     
-            // }
-            // if (_mouseStateExtended.WasButtonJustUp(MouseButton.Left))
-            // {
-            //     _color = DefaultColor;
-            //     _onClickAction();
-            //
-            // }
-
-            base.Update(gameTime);
         }
 
         private void OnMouseClick(object? sender, MouseEventArgs e){

@@ -17,7 +17,7 @@ namespace Ponyform.UI {
         public Vector2 globalPosition { get; private set; }
         
         private readonly List<GameObject> _children;
-        private GameObject _parent;
+        public GameObject _parent { get; private set; }
 
         private bool enabled = true;
 
