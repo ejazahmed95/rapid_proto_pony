@@ -5,5 +5,9 @@
     public enum GameEvent {
         ActivitySet,
         ActivityCleared,
-    }
+		StartedEating,
+		StoppedEating,
+		StartedGrooming,
+		StoppedGrooming
+	}
 }

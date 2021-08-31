@@ -15,6 +15,10 @@ namespace Ponyform.Game
         public GameObject gameRoot;
         private Environment env;
         private Pony pony;
+
+        private ActivityBar aBar;
+
+        private FoodBar foodBar;
         // private readonly EventManager eventManager;
 
         public GameManager(){ 
@@ -29,11 +33,24 @@ namespace Ponyform.Game
             spriteBatch = gameInfra.SpriteBatch;
             DI.Register(env = new Environment());
             DI.Register(pony = new Pony());
-            
+
+            createView();
+            arrangeView();
+        }
+
+        private void createView() {
+            this.aBar = new ActivityBar();
+            this.foodBar = new FoodBar();
             // Add to Gameroot
             gameRoot.Add(env);
             gameRoot.Add(pony);
-            pony.SetPosition(gameInfra.GetGameWidth()*0.4f, gameInfra.GetGameHeight()*0.4f);
+            gameRoot.Add(aBar);
+            gameRoot.Add(foodBar);
+        }
+
+        private void arrangeView() {
+            pony.SetPosition(gameInfra.GetGameWidth()*0.4f, gameInfra.GetGameHeight()*0.25f);
+            aBar.SetPosition(gameInfra.GetGameWidth() - 200, 0, Alignment.TOP_RIGHT);
         }
 
         public void Update(GameTime gameTime){

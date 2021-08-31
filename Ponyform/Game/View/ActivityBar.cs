@@ -31,6 +31,7 @@ namespace Ponyform.Game.View {
         private void onFeedClick(){
             
         }
+        
         private void onGroomClick(){
             
         }
