@@ -9,36 +9,34 @@ namespace Ponyform.Game.View {
     public class Pony: GameObject {
         // References
         private AssetManager _am;
-        private GameInfra _gameInfra;
-        
-        private Image pony_mid;
-        private PonyEyes eyes;
-        private readonly EventManager _em;
-
         public CollisionBox mouthBox, hairBox, tailBox;
+        private readonly EventManager _em;
+        
+        // View
+        private Image pony_mid;
+        private Image pony_hair_back, pony_hair_front;
+        private Image pony_tail;
+        private PonyEyes eyes;
+
         // Current State
+        private PonyData _currentData, _targetData;
 
         public Pony(){
             _am = DI.Get<AssetManager>();
             _em = DI.Get<EventManager>();
-            var infra = DI.Get<GameInfra>();
 
+            CreateView();
+            ArrangeView();
+            RegisterListeners();
+        }
+
+        private void CreateView(){
             pony_mid = new Image(_am.pony_mid);
             Add(pony_mid);
             
             eyes = new PonyEyes();
-            eyes.SetPosition(0.05f*infra.GetGameWidth(), 0.123f*infra.GetGameHeight());
             Add(eyes);
-            CreateView();
-            ArrangeView();
-            _em.RegisterListener(GameEvent.StartedEating, OnFeedButtonClick);
-            _em.RegisterListener(GameEvent.StoppedEating, onStoppedEating);
-
-
-            // _em.SendEvent(GameEvent.Feed_Button_Clicked, new EatingInfo{foodItem = Food.Milk});
-        }
-
-        private void CreateView(){
+            
             var scale = gameInfra.scale;
             mouthBox = new CollisionBox(new Vector2(scale*100));
             hairBox = new CollisionBox(new Vector2(scale*100));
@@ -49,6 +47,8 @@ namespace Ponyform.Game.View {
 
         private void ArrangeView(){
             SetSize(pony_mid.size);
+            eyes.SetPosition(0.05f*gameInfra.GetGameWidth(), 0.123f*gameInfra.GetGameHeight());
+            
             var scale = gameInfra.scale;
             mouthBox.SetPosition(size.X * 0.3f, size.Y*0.25f);
             hairBox.SetPosition(0, 0);
@@ -59,9 +59,16 @@ namespace Ponyform.Game.View {
             tailBox.debug = true;
         }
 
+        private void RegisterListeners(){
+            _em.RegisterListener(GameEvent.StartedEating, OnEatingBegin);
+            _em.RegisterListener(GameEvent.StoppedEating, OnEatingEnd);
+            _em.RegisterListener(GameEvent.StartedGrooming, OnGroomingBegin);
+            _em.RegisterListener(GameEvent.StoppedGrooming, OnPartGroomed);
+        }
+
         #region Event Handlers
 
-        public void OnFeedButtonClick(object data){
+        public void OnEatingBegin(object data){
             if (!Utils.TryConvertVal(data, out EatingInfo info)){
                 return;
             }
@@ -81,11 +88,23 @@ namespace Ponyform.Game.View {
             }
         }
 
-        private void onStoppedEating(object data)
+        private void OnEatingEnd(object data)
         {
             Logger.i("Pony", "Stopped Eating");
         }
 
+        private void OnGroomingBegin(object data)
+        {
+            if (!Utils.TryConvertVal(data, out GroomInfo info)){
+                return;
+            }
+            Logger.i("Pony", $"Grooming Started, part = {info.groomPart}");
+        }
+        
+        private void OnPartGroomed(object data)
+        {
+            Logger.i("Pony", "Grooming Ended");
+        }
         #endregion
 
 
