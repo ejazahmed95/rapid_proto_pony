@@ -13,7 +13,6 @@ namespace Ponyform
     public class PonyGame : Microsoft.Xna.Framework.Game
     {
         private GraphicsDeviceManager _graphics;
-        // private SpriteBatch _spriteBatch;
         private GameManager _gameManager;
 
         public PonyGame()
