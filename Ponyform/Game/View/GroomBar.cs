@@ -31,7 +31,7 @@ namespace Ponyform.Game.View {
             tailGroom = new DraggableIcon(_am.ball);
 
             //Test code for gesture
-            //if (gesture == null) gesture = new Gesture(_gm.setStyle1(hairGroom, GroomPart.Hair));
+            //if (gesture == null) gesture = new Gesture(_gm.setStyle(hairGroom, GroomPart.Hair, 0));
             //Add(gesture);
 
 
@@ -60,7 +60,7 @@ namespace Ponyform.Game.View {
         public override void Update(GameTime gameTime)
         {
             //Test code for gesture
-            //if (gesture.Over) gesture.ResetGesture(_gm.setStyle2(hairGroom, GroomPart.Hair));
+            //if (gesture.Over) gesture.ResetGesture(_gm.setStyle(hairGroom, GroomPart.Hair, 1));
 
             base.Update(gameTime);
         }
