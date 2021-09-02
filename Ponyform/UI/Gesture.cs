@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using MonoGame.Extended.VectorDraw;
-using Ponyform.Game;
-using Ponyform.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
 using Ponyform.Utilities;
-using Ponyform.Event;
+
 
 namespace Ponyform.UI
 {
@@ -27,6 +22,8 @@ namespace Ponyform.UI
         private Action _started;
         private Action _finished;
 
+        private Color _nextColor = new Color(0, 0, 0);
+
         private bool _over = false;
 
         #endregion
@@ -35,8 +32,6 @@ namespace Ponyform.UI
 
         public List<Vector2> Positions { get; private set; }
         public Vector2 Size { get; private set; }
-
-        public Color NextColor { get; set; }
 
         public int Amount { get
             {
@@ -49,12 +44,12 @@ namespace Ponyform.UI
 
         #region Methods
 
-        public Gesture(Texture2D texture, List<Vector2> positions, Vector2 size, DraggableIcon draggableIcon)
+        public Gesture(Texture2D texture, List<Vector2> positions, Vector2 size, DraggableIcon draggableIcon, Color nextColor, Action started, Action finished)
         {
-            ResetGesture(texture, positions, size, draggableIcon);
+            ResetGesture(texture, positions, size, draggableIcon, nextColor, started, finished);
         }
 
-        internal void RegisterCollider(Action started, Action finished)
+        internal void RegisterAction(Action started, Action finished)
         {
             _started = started;
             _finished = finished;
@@ -80,17 +75,18 @@ namespace Ponyform.UI
                 Add(_nextCollisionBox);
                 _nextImage = _images.Dequeue();
                 Add(_nextImage);
-                _nextImage.SetColor(NextColor);
+                _nextImage.SetColor(_nextColor);
                 if (Amount == (Positions.Count - 1)) _started();
             }
 
         }
 
-        public void ResetGesture(Texture2D texture, List<Vector2> positions, Vector2 size, DraggableIcon draggableIcon)
+        public void ResetGesture(Texture2D texture, List<Vector2> positions, Vector2 size, DraggableIcon draggableIcon, Color nextColor, Action started, Action finished)
         {
             Positions = positions;
             Size = size;
             _draggableIcon = draggableIcon;
+            _nextColor = nextColor;
 
             _collisionBoxes = new Queue<CollisionBox>();
             _images = new Queue<Image>();
@@ -108,6 +104,9 @@ namespace Ponyform.UI
                 Add(image);
             }
             _over = false;
+
+            RegisterAction(started, finished);
+
             Logger.i("Gesture", "Reseted");
         }
 
