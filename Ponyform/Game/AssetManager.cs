@@ -18,8 +18,11 @@ namespace Ponyform.Game
         // UI
         public Texture2D button_feed, button_groom;
         public Texture2D food_apple, food_bb, food_grass, food_milk;
-        public Texture2D button_side_bg, button_bottom_bg;
+        public Texture2D button_side_bg, button_bottom_bg, groom_bottom_bg;
         public Texture2D star;
+        
+        // Dialogues
+        public Texture2D dialogue_eat_apple, dialogue_eat_bb, dialogue_eat_milk, dialogue_eat_grass;
 
         // Placeholder assets
         public Texture2D ball;
@@ -89,6 +92,13 @@ namespace Ponyform.Game
             groom_curling_iron = content.Load<Texture2D>("UI/UI_Groom_CurlingIron");
             button_side_bg = content.Load<Texture2D>("UI/UI_side");
             button_bottom_bg = content.Load<Texture2D>("UI/UI_FoodBar");
+            groom_bottom_bg = content.Load<Texture2D>("UI/UI_GroomBar");
+            
+            // Dialogues
+            dialogue_eat_apple = content.Load<Texture2D>("UI/UI_DiaApple");
+            dialogue_eat_bb = content.Load<Texture2D>("UI/UI_DiaBlueberry");
+            dialogue_eat_milk = content.Load<Texture2D>("UI/UI_DiaMilk");
+            dialogue_eat_grass = content.Load<Texture2D>("UI/UI_DiaGrass");
             
             ball = content.Load<Texture2D>("Sprites/ball");
             star = content.Load <Texture2D>("UI/UI_star");

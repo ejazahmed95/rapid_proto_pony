@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Ponyform.Event;
@@ -21,6 +20,9 @@ namespace Ponyform.Game.View {
         private Image ponyMouth;
         private PonyEyes eyes;
 
+        // Dialogue Manager
+        private DialogManager dm;
+        
         // Current State
         private PonyData _currentData, _targetData;
         private Dictionary<PonyTailStyle, List<Texture2D>> tailTextures;
@@ -58,6 +60,9 @@ namespace Ponyform.Game.View {
             
             AddAll(pony_hair_back, pony_tail, pony_mid, pony_hair_front, ponyMouth, eyes);
             
+            dm = new DialogManager();
+            Add(dm);
+            
             var scale = gameInfra.scale;
             mouthBox = new CollisionBox(new Vector2(scale*100));
             hairBox = new CollisionBox(new Vector2(scale*100));
@@ -74,6 +79,8 @@ namespace Ponyform.Game.View {
             UpdateHairTexturesForPony();
             UpdateTailTexturesForPony();
             eyes.SetPosition(0.05f*gameInfra.GetGameWidth(), 0.123f*gameInfra.GetGameHeight());
+            
+            dm.SetPosition(size.X/2, 0, Alignment.BOTTOM);
             
             // Collision boxes
             mouthBox.SetPosition(size.X * 0.3f, size.Y*0.25f);
@@ -165,20 +172,9 @@ namespace Ponyform.Game.View {
             }
             Logger.i("Pony", $"Started Eating, food = {info.foodItem }");
             ponyMouth.SetVisibility(true);
-            ponyMouth.Play(4, 3);
-            switch (info.foodItem){
-                case Food.Apple:
-                    eyes.Blink(1);
-                    break;
-                case Food.Milk:
-                    eyes.Blink(2);
-                    break;
-                case Food.Grass:
-                    eyes.Blink(3);
-                    break;
-                default:
-                    break;
-            }
+            ponyMouth.Play(4, 50);
+            dm.showDialogue(info.foodItem);
+            eyes.Blink(1);
         }
 
         private void OnEatingEnd(object data)
@@ -186,6 +182,7 @@ namespace Ponyform.Game.View {
             Logger.i("Pony", "Stopped Eating");
             ponyMouth.Reset();
             ponyMouth.SetVisibility(false);
+            dm.hideDialogue();
         }
 
         private void OnGroomingBegin(object data)

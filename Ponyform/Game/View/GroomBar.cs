@@ -26,7 +26,7 @@ namespace Ponyform.Game.View {
         }
 
         private void createView() {
-            bg = new Image(_am.button_bottom_bg);
+            bg = new Image(_am.groom_bottom_bg);
             brush = new DraggableIcon(_am.groom_brush);
             comb = new DraggableIcon(_am.groom_comb);
             curlingIron = new DraggableIcon(_am.groom_curling_iron);

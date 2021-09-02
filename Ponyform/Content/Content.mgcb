@@ -193,18 +193,6 @@
 /processorParam:TextureFormat=Color
 /build:Pony/Eye1.png
 
-#begin Pony/Eye1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Pony/Eye1.png
-
 #begin Pony/Eye2.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -216,30 +204,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Pony/Eye2.png
-
-#begin Pony/Eye2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Pony/Eye2.png
-
-#begin Pony/Eye3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Pony/Eye3.png
 
 #begin Pony/Eye3.png
 /importer:TextureImporter
@@ -649,18 +613,6 @@
 /processorParam:TextureFormat=Color
 /build:Pony/Pony_Mid.png
 
-#begin Pony/Pony_Mid.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Pony/Pony_Mid.png
-
 #begin Pony/Tail/Tail_Default.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -817,18 +769,6 @@
 /processorParam:TextureFormat=Color
 /build:UI/UI_Feed.png
 
-#begin UI/UI_Feed.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:UI/UI_Feed.png
-
 #begin UI/UI_Food_Apple.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -840,30 +780,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:UI/UI_Food_Apple.png
-
-#begin UI/UI_Food_Apple.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:UI/UI_Food_Apple.png
-
-#begin UI/UI_Food_Blueberry.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:UI/UI_Food_Blueberry.png
 
 #begin UI/UI_Food_Blueberry.png
 /importer:TextureImporter
@@ -889,30 +805,6 @@
 /processorParam:TextureFormat=Color
 /build:UI/UI_Food_Grass.png
 
-#begin UI/UI_Food_Grass.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:UI/UI_Food_Grass.png
-
-#begin UI/UI_Food_Milk.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:UI/UI_Food_Milk.png
-
 #begin UI/UI_Food_Milk.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -936,30 +828,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:UI/UI_FoodBar.png
-
-#begin UI/UI_FoodBar.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:UI/UI_FoodBar.png
-
-#begin UI/UI_Groom.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:UI/UI_Groom.png
 
 #begin UI/UI_Groom.png
 /importer:TextureImporter
@@ -1009,7 +877,7 @@
 /processorParam:TextureFormat=Color
 /build:UI/UI_Groom_CurlingIron.png
 
-#begin UI/UI_side.png
+#begin UI/UI_GroomBar.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1019,7 +887,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:UI/UI_side.png
+/build:UI/UI_GroomBar.png
 
 #begin UI/UI_side.png
 /importer:TextureImporter

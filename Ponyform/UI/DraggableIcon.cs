@@ -99,7 +99,7 @@ namespace Ponyform.UI
             _mouseStateExtended = MouseExtended.GetState();
             _currentMouse = _mouseStateExtended.Position;
             SetPosition(_mouseStateExtended.X - _parent.globalPosition.X, _mouseStateExtended.Y - _parent.globalPosition.Y);
-            Logger.i("Draggable Icon", $"Local Pos={pos}");
+            // Logger.i("Draggable Icon", $"Local Pos={pos}");
             // Rectangle mouseRectangle = new Rectangle(_mouseStateExtended.X, _mouseStateExtended.Y, 1, 1);
             //
             // if (mouseRectangle.Intersects(Rectangle) && _mouseStateExtended.IsButtonDown(MouseButton.Left))
