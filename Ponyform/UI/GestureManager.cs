@@ -221,9 +221,8 @@ namespace Ponyform.UI
 
                     return style;
             }
-            }
-            
         }
+            
         #endregion
     }
 
