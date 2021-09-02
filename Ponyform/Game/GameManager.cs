@@ -26,6 +26,7 @@ namespace Ponyform.Game
             gameInfra = DI.Get<GameInfra>();
             assetManager = DI.Get<AssetManager>();
             // eventManager = DI.Get<EventManager>();
+            DI.Register(new GestureManager());
             gameRoot = new EmptyGameObject();
         }
 

@@ -115,7 +115,7 @@ namespace Ponyform.Game.View {
             if (!Utils.TryConvertVal(data, out GroomInfo info)){
                 return;
             }
-            Logger.i("Pony", $"Grooming Started, part = {info.groomPart}");
+            Logger.i("Pony", $"Grooming Started, part = {info.groomPart}, hairStyle = {info.ponyHairStyle}, tailStyle = {info.ponyTailStyle}");
         }
         
         private void OnPartGroomed(object data)

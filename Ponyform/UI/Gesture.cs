@@ -24,14 +24,11 @@ namespace Ponyform.UI
 
         private Color _nextColor = new Color(0, 0, 0);
 
-        private bool _over = false;
-
         #endregion
 
         #region Properties
 
         public List<Vector2> Positions { get; private set; }
-        public Vector2 Size { get; private set; }
 
         public int Amount { get
             {
@@ -39,6 +36,7 @@ namespace Ponyform.UI
             }
         }
 
+        public bool Over { get; set; }
 
         #endregion
 
@@ -47,6 +45,11 @@ namespace Ponyform.UI
         public Gesture(Texture2D texture, List<Vector2> positions, Vector2 size, DraggableIcon draggableIcon, Color nextColor, Action started, Action finished)
         {
             ResetGesture(texture, positions, size, draggableIcon, nextColor, started, finished);
+        }
+
+        public Gesture(GestureAttributes gestureAttributes)
+        {
+            ResetGesture(gestureAttributes);
         }
 
         internal void RegisterAction(Action started, Action finished)
@@ -67,7 +70,7 @@ namespace Ponyform.UI
                 _nextImage = null;
                 
                 _finished();
-                _over = true;       
+                Over = true;       
             }
             else
             {
@@ -84,7 +87,6 @@ namespace Ponyform.UI
         public void ResetGesture(Texture2D texture, List<Vector2> positions, Vector2 size, DraggableIcon draggableIcon, Color nextColor, Action started, Action finished)
         {
             Positions = positions;
-            Size = size;
             _draggableIcon = draggableIcon;
             _nextColor = nextColor;
 
@@ -93,19 +95,47 @@ namespace Ponyform.UI
 
             foreach (Vector2 pos in Positions)
             {
-                CollisionBox collisionBox = new CollisionBox(size);
-                collisionBox.SetPosition(pos);
+                CollisionBox collisionBox = new CollisionBox(size * gameInfra.scale);
+                collisionBox.SetPosition(pos * gameInfra.scale);
                 _collisionBoxes.Enqueue(collisionBox);
                 Add(collisionBox);
 
                 Image image = new Image(texture);
-                image.SetPosition(pos);
+                image.SetPosition(pos * gameInfra.scale);
                 _images.Enqueue(image);
                 Add(image);
             }
-            _over = false;
+            Over = false;
 
             RegisterAction(started, finished);
+
+            Logger.i("Gesture", "Reseted");
+        }
+
+        public void ResetGesture(GestureAttributes gestureAttributes)
+        {
+            Positions = gestureAttributes.positions;
+            _draggableIcon = gestureAttributes.draggableIcon;
+            _nextColor = gestureAttributes.nextColor;
+
+            _collisionBoxes = new Queue<CollisionBox>();
+            _images = new Queue<Image>();
+
+            foreach (Vector2 pos in Positions)
+            {
+                CollisionBox collisionBox = new CollisionBox(size * gameInfra.scale);
+                collisionBox.SetPosition(pos * gameInfra.scale);
+                _collisionBoxes.Enqueue(collisionBox);
+                Add(collisionBox);
+
+                Image image = new Image(gestureAttributes.texture);
+                image.SetPosition(pos * gameInfra.scale);
+                _images.Enqueue(image);
+                Add(image);
+            }
+            Over = false;
+
+            RegisterAction(gestureAttributes.started, gestureAttributes.finished);
 
             Logger.i("Gesture", "Reseted");
         }
@@ -113,7 +143,7 @@ namespace Ponyform.UI
 
         public override void Update(GameTime gameTime)
         {
-            if (!_over)
+            if (!Over)
             {
                 if (_nextCollisionBox == null) nextStep();
 
