@@ -18,6 +18,8 @@
     public enum GroomPart {
         Hair, Body, Tail
     }
+
+
     
     public enum ActivityType {
         NONE, FEED, GROOM
