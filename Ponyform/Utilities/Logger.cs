@@ -10,7 +10,7 @@ namespace Ponyform.Utilities {
         ERROR = 5,
         FATAL = 6,
     }
-	
+    
     public static class Logger {
         private static LogLevel level = LogLevel.DEBUG;
 
@@ -20,30 +20,35 @@ namespace Ponyform.Utilities {
 		
         public static void t(string tag, string message) {
             if (level > LogLevel.TRACE) return;
-            Console.WriteLine($"[T] [{tag}]: {message}");
+            logFunc($"[T] [{tag}]: {message}");
         }
 		
         public static void d(string tag, string message) {
             if (level > LogLevel.DEBUG) return;
-            Console.WriteLine($"[D] [{tag}]: {message}");
+            logFunc($"[D] [{tag}]: {message}");
         }
 		
         public static void i(string tag, string message) {
             if (level > LogLevel.INFO) return;
-            Debug.WriteLine($"[I] [{tag}]: {message}");
+            logFunc($"[I] [{tag}]: {message}");
         }
 		
         public static void w(string tag, string message) {
             if (level > LogLevel.WARN) return;
-            Console.WriteLine($"[W] [{tag}]: {message}");
+            logFunc($"[W] [{tag}]: {message}");
         }
         public static void e(string tag, string message) {
             if (level > LogLevel.ERROR) return;
-            Debug.WriteLine($"[E] [{tag}]: {message}");
+            logFunc($"[E] [{tag}]: {message}");
         }
         public static void f(string tag, string message) {
             // if (level > LogLevel.INFO) return;
-            Console.WriteLine($"[Fatal] [{tag}]: {message}");
+            logFunc($"[Fatal] [{tag}]: {message}");
+        }
+
+        public static void logFunc(string line) {
+            Console.WriteLine(line);
+            // Debug.WriteLine(line);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Ponyform.Game.View {
         private Image pony_mid;
         private Image pony_hair_back, pony_hair_front;
         private Image pony_tail;
-        private AnimatedImage ponyMouth;
+        private Image ponyMouth;
         private PonyEyes eyes;
 
         // Current State
@@ -34,7 +34,7 @@ namespace Ponyform.Game.View {
 
         private void CreateView(){
             pony_mid = new Image(_am.pony_mid);
-            ponyMouth = new AnimatedImage(_am.pony_mouth_1, _am.pony_mouth_2, _am.pony_mouth_3);
+            ponyMouth = new Image(_am.pony_mouth_1, _am.pony_mouth_2, _am.pony_mouth_3);
             eyes = new PonyEyes();
             
             AddAll(pony_mid, ponyMouth, eyes);
@@ -49,9 +49,10 @@ namespace Ponyform.Game.View {
 
         private void ArrangeView(){
             SetSize(pony_mid.size);
+            ponyMouth.SetPosition(0.37f*size.X, 0.32f*size.Y);
+            ponyMouth.SetVisibility(false);
             eyes.SetPosition(0.05f*gameInfra.GetGameWidth(), 0.123f*gameInfra.GetGameHeight());
             
-            var scale = gameInfra.scale;
             mouthBox.SetPosition(size.X * 0.3f, size.Y*0.25f);
             hairBox.SetPosition(0, 0);
             tailBox.SetPosition(size.X*0.6f, size.Y*0.4f);
@@ -88,7 +89,8 @@ namespace Ponyform.Game.View {
                 return;
             }
             Logger.i("Pony", $"Started Eating, food = {info.foodItem }");
-            ponyMouth.Play(4, 100);
+            ponyMouth.SetVisibility(true);
+            ponyMouth.Play(4, 3);
             switch (info.foodItem){
                 case Food.Apple:
                     eyes.Blink(1);
@@ -108,6 +110,7 @@ namespace Ponyform.Game.View {
         {
             Logger.i("Pony", "Stopped Eating");
             ponyMouth.Reset();
+            ponyMouth.SetVisibility(false);
         }
 
         private void OnGroomingBegin(object data)
