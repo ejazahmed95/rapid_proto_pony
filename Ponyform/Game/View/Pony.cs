@@ -28,6 +28,7 @@ namespace Ponyform.Game.View {
         // Current State
         private PonyData _currentData, _targetData;
         private Dictionary<PonyTailStyle, List<Texture2D>> tailTextures;
+        private int _currentFrames = 0;
 
         public Pony(){
             _am = DI.Get<AssetManager>();
@@ -105,9 +106,15 @@ namespace Ponyform.Game.View {
         public override void Update(GameTime gameTime){
             // Update pony's colors
             if (!_currentData.bodyColor.Equals(_targetData.bodyColor)){
-                _currentData.bodyColor = interpolate(_currentData.bodyColor.ToVector3(), _targetData.bodyColor.ToVector3(),
-                    gameTime.GetElapsedSeconds(), 30);
-                pony_mid.SetColor(_currentData.bodyColor);
+                this._currentFrames++;
+                if (_currentFrames >= 10){
+                    _currentData.bodyColor = interpolate(_currentData.bodyColor.ToVector3(), _targetData.bodyColor.ToVector3(),
+                        gameTime.GetElapsedSeconds(), 3);
+                    pony_mid.SetColor(_currentData.bodyColor);
+                    _currentFrames = 0;
+                }
+            } else{
+                _currentFrames = 0;
             }
             base.Update(gameTime);
         }
@@ -115,7 +122,7 @@ namespace Ponyform.Game.View {
         private Color interpolate(Vector3 current, Vector3 target, float elapsedSec, int i){
             Vector3 res = new Vector3(current.X, current.Y, current.Z);
             float max = (1f / i) * elapsedSec;
-            Logger.i("INTERPOLATE", $"{current}  {target}  {elapsedSec}  {i}");
+            Logger.i("INTERPOLATE", $"{current}  {target}  {elapsedSec}  {i} {max}");
             res.X = moveTowards(res.X, target.X, max);
             res.Y = moveTowards(res.Y, target.Y, max);
             res.Z = moveTowards(res.Z, target.Z, max);
@@ -127,7 +134,11 @@ namespace Ponyform.Game.View {
                 return target;
             }
 
-            if (target < current) return current - max;
+            if (target < current){
+                // Logger.i("INTERPOLATE2", $"{target} {current} {max}");
+                return current - max;
+            }
+            // Logger.i("INTERPOLATE3", $"{target} {current} {max}");
             return current + max;
         }
 
@@ -204,16 +215,16 @@ namespace Ponyform.Game.View {
             eyes.Blink(1);
             switch (info.foodItem){
                 case Food.Apple:
-                    // _targetData.bodyColor = Color.Red;
+                    _targetData.bodyColor = Color.Red;
                     break;
                 case Food.Milk:
-                    // _targetData.bodyColor = Color.White;
+                    _targetData.bodyColor = Color.White;
                     break;
                 case Food.Grass:
-                    // _targetData.bodyColor = Color.Green;
+                    _targetData.bodyColor = Color.Green;
                     break;
                 case Food.Blueberry:
-                    // _targetData.bodyColor = Color.Blue;
+                    _targetData.bodyColor = Color.Blue;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
