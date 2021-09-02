@@ -34,6 +34,9 @@ namespace Ponyform.Game.View {
             _em.RegisterListener(GameEvent.StartedEating, OnFeedButtonClick);
             _em.RegisterListener(GameEvent.StoppedEating, onStoppedEating);
 
+            _em.RegisterListener(GameEvent.StartedGrooming, onStartedGrooming);
+            _em.RegisterListener(GameEvent.StoppedGrooming, onStoppedGrooming);
+
 
             // _em.SendEvent(GameEvent.Feed_Button_Clicked, new EatingInfo{foodItem = Food.Milk});
         }
@@ -84,6 +87,24 @@ namespace Ponyform.Game.View {
         private void onStoppedEating(object data)
         {
             Logger.i("Pony", "Stopped Eating");
+        }
+
+        private void onStartedGrooming(object data)
+        {
+            if (!Utils.TryConvertVal(data, out GroomInfo info))
+            {
+                return;
+            }
+            Logger.i("Pony", $"Started Grooming, food = {info.groomPart}");
+        }
+
+        private void onStoppedGrooming(object data)
+        {
+            if (!Utils.TryConvertVal(data, out GroomInfo info))
+            {
+                return;
+            }
+            Logger.i("Pony", $"Stopped Grooming, food = {info.groomPart}");
         }
 
         #endregion
