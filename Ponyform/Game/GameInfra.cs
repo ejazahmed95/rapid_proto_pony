@@ -8,7 +8,7 @@ namespace Ponyform.Game
         public SpriteBatch SpriteBatch;
         private const int GameWidth = 1920;
         private const int GameHeight = 1080;
-        public float scale = .5f;
+        public float scale = 1f;
         private GraphicsDeviceManager _graphics;
 
         public Texture2D debugTexture;

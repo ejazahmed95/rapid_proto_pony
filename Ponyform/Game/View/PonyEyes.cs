@@ -6,13 +6,13 @@ namespace Ponyform.Game.View {
         private AssetManager _am;
 
         private Texture2D eye1, eye2, eye3;
-        private AnimatedImage eyeAnim;
+        private Image eyeAnim;
         public PonyEyes(){
             _am = DI.Get<AssetManager>();
             eye1 = _am.pony_eye_1;
             eye2 = _am.pony_eye_2;
             eye3 = _am.pony_eye_3;
-            eyeAnim = new AnimatedImage(eye1, eye2, eye3, eye2);
+            eyeAnim = new Image(eye1, eye2, eye3, eye2);
             
             Add(eyeAnim);
         }

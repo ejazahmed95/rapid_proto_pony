@@ -16,6 +16,8 @@ namespace Ponyform.Game
         private Environment env;
         private Pony pony;
 
+        private MouseStateDetecter mouseStateDetecter;
+
         private ActivityBar aBar;
 
         private FoodBar foodBar;
@@ -26,6 +28,7 @@ namespace Ponyform.Game
             gameInfra = DI.Get<GameInfra>();
             assetManager = DI.Get<AssetManager>();
             // eventManager = DI.Get<EventManager>();
+            DI.Register(new GestureManager());
             gameRoot = new EmptyGameObject();
         }
 
@@ -34,6 +37,8 @@ namespace Ponyform.Game
             spriteBatch = gameInfra.SpriteBatch;
             DI.Register(env = new Environment());
             DI.Register(pony = new Pony());
+
+            DI.Register(mouseStateDetecter = new MouseStateDetecter());
 
             createView();
             arrangeView();
@@ -49,6 +54,8 @@ namespace Ponyform.Game
             gameRoot.Add(aBar);
             gameRoot.Add(foodBar);
             gameRoot.Add(groomBar);
+
+            groomBar.Add(mouseStateDetecter);
         }
 
         private void arrangeView() {

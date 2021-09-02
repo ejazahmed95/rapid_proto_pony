@@ -29,6 +29,9 @@ namespace Ponyform.UI
         #region Properties
 
         //set the color when it is not being held 
+
+        public bool Holding => _holding;
+
         public Color DefaultColor { get; set; }
 
         //set the color when it is being held 
@@ -48,7 +51,7 @@ namespace Ponyform.UI
 
         #endregion
 
-        public DraggableIcon(Texture2D texture) : base(texture)
+        public DraggableIcon(params Texture2D[] textures) : base(textures)
         {
             DefaultColor = Color.White;
             HoldingColor = Color.White;
@@ -76,6 +79,9 @@ namespace Ponyform.UI
             if (!_holding) return;
             SetPosition(new Vector2(originalPos.X, originalPos.Y));
             _holding = false;
+            if (Interacting) {
+                _onExitCb();
+            }
         }
 
         private bool Intersects(){
@@ -96,6 +102,7 @@ namespace Ponyform.UI
             _mouseStateExtended = MouseExtended.GetState();
             _currentMouse = _mouseStateExtended.Position;
             SetPosition(_mouseStateExtended.X - _parent.globalPosition.X, _mouseStateExtended.Y - _parent.globalPosition.Y);
+            // Logger.i("Draggable Icon", $"Local Pos={pos}");
             // Rectangle mouseRectangle = new Rectangle(_mouseStateExtended.X, _mouseStateExtended.Y, 1, 1);
             //
             // if (mouseRectangle.Intersects(Rectangle) && _mouseStateExtended.IsButtonDown(MouseButton.Left))

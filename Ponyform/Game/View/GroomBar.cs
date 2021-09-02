@@ -9,50 +9,55 @@ namespace Ponyform.Game.View {
     public class GroomBar: GameObject {
         private AssetManager _am;
         private EventManager _em;
+        private GestureManager _gm;
 
         private Image bg;
-        private DraggableIcon hairGroom, tailGroom;
+        private DraggableIcon brush, comb, curlingIron;
+
+        private bool _preHoldingBrush = false, _preHoldingComb = false;
+
+        private int hairStyle = 0;
+        private int tailStyle = 0;
 
         private Gesture gesture;
         
         public GroomBar(){
             _am = DI.Get<AssetManager>();
             _em = DI.Get<EventManager>();
+            _gm = DI.Get<GestureManager>();
             createView();
             arrangeView();
             _em.RegisterListener(GameEvent.ActivitySet, onActivitySet);
         }
 
         private void createView() {
-            bg = new Image(_am.button_bottom_bg);
-            hairGroom = new DraggableIcon(_am.ball);
-            tailGroom = new DraggableIcon(_am.ball);
+            bg = new Image(_am.groom_bottom_bg);
+            brush = new DraggableIcon(_am.groom_brush);
+            comb = new DraggableIcon(_am.groom_comb);
+            curlingIron = new DraggableIcon(_am.groom_curling_iron);
 
+            //Test code for gesture
+            //if (gesture == null) gesture = new Gesture(_gm.setStyle(hairGroom, GroomPart.Hair, 0));
+            //Add(gesture);
 
-            //test code for gesture
-            //List<Vector2> gesturePositions = new List<Vector2>();
-            //gesturePositions.Add(new Vector2(250, 0));
-            //gesturePositions.Add(new Vector2(500, 0));
-            //gesturePositions.Add(new Vector2(500, 250));
-            //gesturePositions.Add(new Vector2(250, 250));
+            if (gesture == null)
+            {
+                gesture = new Gesture(_gm.setStyle(brush, GroomPart.Hair, -1));
+                Add(gesture);
+                gesture.Over = true;
+            }
 
-            //gesture = new Gesture(_am.star, gesturePositions, new Vector2(10, 10), hairGroom);
-            //gesture.SetPosition(200, -400);
-            //gesture.NextColor = new Color(0, 0, 0);
-            //gesture.RegisterCollider(() => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = GroomPart.Hair }), 
-            //    () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = GroomPart.Hair }));
-
-
-
-            AddAll( bg, hairGroom, tailGroom);
+            AddAll( bg, brush, comb, curlingIron);
         }
 
         private void arrangeView() {
             float xPos = 0, yPos = 0, iconWidth = 100f;
-            hairGroom.SetPosition(xPos, yPos);
+            brush.SetPosition(xPos, yPos);
             xPos += iconWidth;
-            tailGroom.SetPosition(xPos, yPos);
+            comb.SetPosition(xPos, yPos);
             xPos += iconWidth;
+
+            curlingIron.SetPosition(xPos, yPos);
 
             SetSize(new Vector2(bg.size.X, bg.size.Y));
             SetVisibility(false);
@@ -64,6 +69,46 @@ namespace Ponyform.Game.View {
             }
             Logger.i("GroomBar", $"Activity Set = {info.type}");
             SetVisibility(info.type == ActivityType.GROOM);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            //Test code for gesture
+            //if (gesture.Over) gesture.ResetGesture(_gm.setStyle(hairGroom, GroomPart.Hair, 1));
+
+            if (brush.Holding)
+            {
+                if (!_preHoldingBrush)
+                {
+                    if (gesture.Over) gesture.ResetGesture(_gm.setStyle(brush, GroomPart.Hair, hairStyle++ % 5));
+                    _preHoldingBrush = true;
+                }
+            }
+            else
+            {
+                if (_preHoldingBrush)
+                {
+                    _preHoldingBrush = false;
+                }
+            }
+
+            if (comb.Holding)
+            {
+                if (!_preHoldingComb)
+                {
+                    if (gesture.Over) gesture.ResetGesture(_gm.setStyle(comb, GroomPart.Tail, tailStyle++ % 5));
+                    _preHoldingComb = true;
+                }
+            }
+            else
+            {
+                if (_preHoldingComb)
+                {
+                    _preHoldingComb = false;
+                }
+            }
+
+            base.Update(gameTime);
         }
     }
 }
