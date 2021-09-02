@@ -10,6 +10,7 @@ namespace Ponyform.Game
         
         // Pony
         public Texture2D pony_mid, pony_eye_1, pony_eye_2, pony_eye_3;
+        public Texture2D pony_mouth_1, pony_mouth_2, pony_mouth_3;
         
         // UI
         public Texture2D button_feed, button_groom;
@@ -19,7 +20,7 @@ namespace Ponyform.Game
 
         // Placeholder assets
         public Texture2D ball;
-        
+        public Texture2D groom_brush, groom_comb, groom_curling_iron;
         public AssetManager(ContentManager content){
             this.content = content;
         }
@@ -45,6 +46,9 @@ namespace Ponyform.Game
             pony_eye_1 = content.Load<Texture2D>("Pony/Eye1");
             pony_eye_2 = content.Load<Texture2D>("Pony/Eye2");
             pony_eye_3 = content.Load<Texture2D>("Pony/Eye3");
+            pony_mouth_1 = content.Load<Texture2D>("Pony/Chewing1");
+            pony_mouth_2 = content.Load<Texture2D>("Pony/Chewing2");
+            pony_mouth_3 = content.Load<Texture2D>("Pony/Chewing3");
 
             // UI
             button_feed = content.Load<Texture2D>("UI/UI_Feed");
@@ -53,6 +57,9 @@ namespace Ponyform.Game
             food_bb = content.Load<Texture2D>("UI/UI_Food_Blueberry");
             food_grass = content.Load<Texture2D>("UI/UI_Food_Grass");
             food_milk = content.Load<Texture2D>("UI/UI_Food_Milk");
+            groom_brush = content.Load<Texture2D>("UI/UI_Groom_Brush");
+            groom_comb = content.Load<Texture2D>("UI/UI_Groom_Comb");
+            groom_curling_iron = content.Load<Texture2D>("UI/UI_Groom_CurlingIron");
             button_side_bg = content.Load<Texture2D>("UI/UI_side");
             button_bottom_bg = content.Load<Texture2D>("UI/UI_FoodBar");
             

@@ -34,10 +34,10 @@ namespace Ponyform.Game.View {
 
         private void CreateView(){
             pony_mid = new Image(_am.pony_mid);
-            Add(pony_mid);
-            
+            ponyMouth = new AnimatedImage(_am.pony_mouth_1, _am.pony_mouth_2, _am.pony_mouth_3);
             eyes = new PonyEyes();
-            Add(eyes);
+            
+            AddAll(pony_mid, ponyMouth, eyes);
             
             var scale = gameInfra.scale;
             mouthBox = new CollisionBox(new Vector2(scale*100));
@@ -56,9 +56,9 @@ namespace Ponyform.Game.View {
             hairBox.SetPosition(0, 0);
             tailBox.SetPosition(size.X*0.6f, size.Y*0.4f);
             
-            mouthBox.debug = true;
-            hairBox.debug = true;
-            tailBox.debug = true;
+            // mouthBox.debug = true;
+            // hairBox.debug = true;
+            // tailBox.debug = true;
         }
 
         private void RegisterListeners(){
@@ -88,6 +88,7 @@ namespace Ponyform.Game.View {
                 return;
             }
             Logger.i("Pony", $"Started Eating, food = {info.foodItem }");
+            ponyMouth.Play(4, 100);
             switch (info.foodItem){
                 case Food.Apple:
                     eyes.Blink(1);
@@ -106,6 +107,7 @@ namespace Ponyform.Game.View {
         private void OnEatingEnd(object data)
         {
             Logger.i("Pony", "Stopped Eating");
+            ponyMouth.Reset();
         }
 
         private void OnGroomingBegin(object data)

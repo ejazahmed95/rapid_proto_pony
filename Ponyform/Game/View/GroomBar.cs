@@ -44,7 +44,7 @@ namespace Ponyform.Game.View {
 
 
 
-            AddAll( bg, hairGroom, tailGroom, gesture);
+            AddAll( bg, hairGroom, tailGroom);
         }
 
         private void arrangeView() {

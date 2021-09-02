@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Ponyform.Game;
 
@@ -8,6 +9,8 @@ namespace Ponyform.UI {
         protected Color _color = Color.White;
         protected float scale;
         
+        private List<Texture2D> _textures;
+        private int currentIndex = 0;
         public Rectangle Rectangle => new Rectangle((int)globalPosition.X, (int)globalPosition.Y, (int)size.X, (int)size.Y);
         
         public Image(Texture2D texture){
