@@ -31,7 +31,6 @@ namespace Ponyform.UI
 
         public GestureAttributes setStyle(DraggableIcon draggableIcon, GroomPart groomPart, int styleNum)
         {
-            styleNum %= 5;
             GestureAttributes style = new GestureAttributes();
 
             switch (styleNum)
@@ -103,6 +102,13 @@ namespace Ponyform.UI
 
                     return style;
                 default:
+                    style.draggableIcon = draggableIcon;
+                    style.texture = _am.star;
+                    style.positions = new List<Vector2>();
+                    style.nextColor = new Color(0, 0, 0);
+                    style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle5, ponyTailStyle = PonyTailStyle.TailStyle5 });
+                    style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle5, ponyTailStyle = PonyTailStyle.TailStyle5 });
+
                     return style;
             }
         }

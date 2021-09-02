@@ -29,6 +29,9 @@ namespace Ponyform.UI
         #region Properties
 
         //set the color when it is not being held 
+
+        public bool Holding => _holding;
+
         public Color DefaultColor { get; set; }
 
         //set the color when it is being held 
