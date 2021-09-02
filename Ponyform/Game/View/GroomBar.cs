@@ -38,6 +38,10 @@ namespace Ponyform.Game.View {
             brush = new DraggableIcon(_am.groom_brush);
             comb = new DraggableIcon(_am.groom_comb);
             curlingIron = new DraggableIcon(_am.groom_curling_iron);
+            
+            brush.SetScale(0.7f);
+            comb.SetScale(0.7f);
+            curlingIron.SetScale(0.7f);
 
             //Test code for gesture
             //if (gesture == null) gesture = new Gesture(_gm.setStyle(hairGroom, GroomPart.Hair, 0));
@@ -45,11 +49,11 @@ namespace Ponyform.Game.View {
 
             if (gesture == null)
             {
-                gesture = new Gesture(_gm.setStyle(brush, GroomPart.Hair, -1), true);
+                gesture = new Gesture(_gm.setStyle(curlingIron, GroomPart.Hair, -1), true);
                 Add(gesture);
             }
 
-            AddAll( bg, brush, comb, curlingIron);
+            AddAll( bg, curlingIron, comb, brush);
 
             _horizontalAmount += 3;
             _verticalAmount += 1;
@@ -60,19 +64,18 @@ namespace Ponyform.Game.View {
             float iconWidth = bg.size.X / (_horizontalAmount + 1);
             float iconHeight = bg.size.Y / (_verticalAmount + 1);
 
-            float biasHeight = - bg.size.Y * 0.8f;
+            float biasHeight = - bg.size.Y * 0.7f;
 
             yPos += biasHeight;
 
             xPos += iconWidth;
             yPos += iconHeight;
 
-            brush.SetPosition(xPos, yPos);
+            curlingIron.SetPosition(xPos, yPos);
             xPos += iconWidth;
             comb.SetPosition(xPos, yPos);
             xPos += iconWidth;
-
-            curlingIron.SetPosition(xPos, yPos);
+            brush.SetPosition(xPos, yPos);
 
             SetSize(new Vector2(bg.size.X, bg.size.Y));
             SetVisibility(false);
@@ -91,11 +94,11 @@ namespace Ponyform.Game.View {
             //Test code for gesture
             //if (gesture.Over) gesture.ResetGesture(_gm.setStyle(hairGroom, GroomPart.Hair, 1));
 
-            if (brush.Holding)
+            if (curlingIron.Holding)
             {
                 if (!_preHoldingBrush)
                 {
-                    if (gesture.Over) gesture.ResetGesture(_gm.setStyle(brush, GroomPart.Hair, hairStyle++ % 5), false);
+                    if (gesture.Over) gesture.ResetGesture(_gm.setStyle(curlingIron, GroomPart.Hair, hairStyle++ % 5), false);
                     _preHoldingBrush = true;
                 }
             }
@@ -103,7 +106,7 @@ namespace Ponyform.Game.View {
             {
                 if (_preHoldingBrush)
                 {
-                    gesture.ResetGesture(_gm.setStyle(brush, GroomPart.Hair, -1), true);
+                    gesture.ResetGesture(_gm.setStyle(curlingIron, GroomPart.Hair, -1), true);
                     Logger.d("GroomBar", "destory the gesture");
                     _preHoldingBrush = false;
                 }
@@ -121,7 +124,7 @@ namespace Ponyform.Game.View {
             {
                 if (_preHoldingComb)
                 {
-                    gesture.ResetGesture(_gm.setStyle(brush, GroomPart.Tail, -1), true);
+                    gesture.ResetGesture(_gm.setStyle(curlingIron, GroomPart.Tail, -1), true);
                     Logger.d("GroomBar", "destory the gesture");
                     _preHoldingComb = false;
                 }

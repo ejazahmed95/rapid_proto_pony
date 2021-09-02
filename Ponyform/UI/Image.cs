@@ -37,6 +37,10 @@ namespace Ponyform.UI {
             SetHeight(_textures[0].Height*scale*gameInfra.scale);
         }
 
+        public void SetScale(float scale){
+            this.scale = scale;
+        }
+
         public void UpdateTextures(params Texture2D[] textures) {
             _textures = textures.ToList();
             Reset();
