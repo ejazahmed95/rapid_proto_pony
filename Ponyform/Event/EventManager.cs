@@ -12,7 +12,8 @@ namespace Ponyform.Event {
         /**
          * Register a function call for handling the event data
          */
-        public void RegisterListener(GameEvent e, Action<object> listener){
+        public void RegisterListener
+            (GameEvent e, Action<object> listener){
             if (!eventListeners.TryGetValue(e, out var listeners)){
                 eventListeners[e] = new List<Action<object>>();
                 listeners = eventListeners[e];

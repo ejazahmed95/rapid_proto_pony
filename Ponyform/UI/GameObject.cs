@@ -21,7 +21,7 @@ namespace Ponyform.UI {
         public GameObject _parent { get; private set; }
 
         private bool enabled = true;
-        protected bool debug = false;
+        public bool debug = false;
 
         public GameInfra gameInfra;
 
@@ -59,7 +59,9 @@ namespace Ponyform.UI {
         #region Gameloop
 
         public virtual void Update(GameTime gameTime){
+            //globalPosition = origin + pos;
             foreach (var gameObject in _children){
+                if (!gameObject.Enabled()) continue;
                 gameObject.Update(gameTime);
             }
         }
@@ -89,7 +91,7 @@ namespace Ponyform.UI {
         #region Positioning
 
         public void SetPosition(Vector2 newPos){
-            pos = new Vector2(newPos.X, newPos.Y);
+            SetPosition(newPos.X, newPos.Y);
         }
         
         public void SetPosition(float x, float y){
@@ -135,7 +137,7 @@ namespace Ponyform.UI {
                     y -= size.Y;
                     break;
             }
-            pos = new Vector2(x, y);
+            SetPosition(x, y);
         }
 
         public void SetSize(Vector2 newSize){

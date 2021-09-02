@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Input;
 using MonoGame.Extended.Input.InputListeners;
 using Ponyform.Game;
+using System;
+using Ponyform.Utilities;
 
 namespace Ponyform.UI
 {
@@ -14,12 +16,13 @@ namespace Ponyform.UI
 
         private Point _currentMouse;
 
-        private Point _previousMouse;
-
         private bool _holding = false;
 
         private Vector2 originalPos;
         private MouseListener _mouseListener;
+        private CollisionBox _interactiveBox;
+        private Action _onEnterCb;
+        private Action _onExitCb;
 
         #endregion
 
@@ -31,6 +34,7 @@ namespace Ponyform.UI
         //set the color when it is being held 
         public Color HoldingColor { get; set; }
 
+        /*
         public Rectangle Rectangle
         {
             get
@@ -38,12 +42,18 @@ namespace Ponyform.UI
                 return new Rectangle((int)globalPosition.X, (int)globalPosition.Y, _tex.Width, _tex.Height);
             }
         }
+        */
+
+        public bool Interacting { get; set; }
+
         #endregion
 
         public DraggableIcon(Texture2D texture) : base(texture)
         {
             DefaultColor = Color.White;
             HoldingColor = Color.White;
+
+            Interacting = false;
 
             _mouseListener = DI.Get<MouseListener>();
             _mouseListener.MouseDragStart += OnMouseDragStart;
@@ -73,7 +83,14 @@ namespace Ponyform.UI
             Rectangle mouseRectangle = new Rectangle(_mouseStateExtended.X, _mouseStateExtended.Y, 1, 1);
             return mouseRectangle.Intersects(Rectangle);
         }
-        
+
+        internal void RegisterCollider(CollisionBox interactiveBox, Action onEnterCb, Action onExitCb)
+        {
+            _interactiveBox = interactiveBox;
+            _onEnterCb = onEnterCb;
+            _onExitCb = onExitCb;
+        }
+
         public override void Update(GameTime gameTime){
             if (!_holding) return;
             _mouseStateExtended = MouseExtended.GetState();
@@ -100,6 +117,27 @@ namespace Ponyform.UI
             // }
             //
             // _previousMouse = _currentMouse;
+            if(_interactiveBox != null) {
+                if (_interactiveBox.Intersects(Rectangle))
+                {
+                    if (!Interacting)
+                    {
+                        _onEnterCb();
+                        Interacting = true;
+                        //Logger.i("DraggableIcon", "Entered");
+                    }
+                }
+                else
+                {
+                    if (Interacting)
+                    {
+                        _onExitCb();
+                        Interacting = false;
+                        //Logger.i("DraggableIcon", "Exitted");
+                    }
+                }
+            }
+
             base.Update(gameTime);
         }
     }
