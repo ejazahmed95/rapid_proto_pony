@@ -1,12 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
 
 namespace Ponyform.Game.View {
-    public struct PonyData {
-        public Color bodyColor;
-        public Color hairColor;
-        public Color tailColor;
-        public PonyHairStyle hairStyle;
-        public PonyTailStyle tailStyle;
+    public class PonyData {
+        public PonyState state = PonyState.IDLE;
+        public Color bodyColor = Color.White;
+        public Color hairColor = Color.White;
+        public Color tailColor = Color.White;
+        public PonyHairStyle hairStyle = PonyHairStyle.Default;
+        public PonyTailStyle tailStyle = PonyTailStyle.Default;
+    }
+
+    public enum PonyState {
+        IDLE, EATING, BEING_PET, HEAD_GROOMED, TAIL_GROOMED
     }
 
     public enum PonyGroomPart {
@@ -14,16 +19,20 @@ namespace Ponyform.Game.View {
     }
 
     public enum PonyHairStyle {
+        Default,
         HairStyle1,
         HairStyle2,
         HairStyle3,
-        HairStyle4
+        HairStyle4,
+        HairStyle5
     }
 
     public enum PonyTailStyle {
+        Default,
         TailStyle1,
         TailStyle2,
         TailStyle3,
-        TailStyle4
+        TailStyle4,
+        TailStyle5
     }
 }

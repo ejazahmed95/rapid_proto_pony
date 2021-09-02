@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Ponyform.Event;
@@ -16,6 +17,7 @@ namespace Ponyform.Game.View {
         private Image pony_mid;
         private Image pony_hair_back, pony_hair_front;
         private Image pony_tail;
+        private AnimatedImage ponyMouth;
         private PonyEyes eyes;
 
         // Current State
@@ -66,6 +68,19 @@ namespace Ponyform.Game.View {
             _em.RegisterListener(GameEvent.StoppedGrooming, OnPartGroomed);
         }
 
+        public override void Update(GameTime gameTime){
+            // Update pony's colors
+            base.Update(gameTime);
+        }
+
+        #region Pony View Updates
+        private void UpdatePonyUsingData(){
+            
+        }
+        
+        
+        #endregion
+        
         #region Event Handlers
 
         public void OnEatingBegin(object data){
