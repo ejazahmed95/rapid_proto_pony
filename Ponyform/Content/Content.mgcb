@@ -685,53 +685,59 @@
 /processorParam:TextureFormat=Color
 /build:Pony/Tail/Tail5.png
 
-#begin Sounds/Horse Drinking_01.wav
+#begin Sounds/Horse_drinking_01.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/Horse Drinking_01.wav
+/build:Sounds/Horse_drinking_01.wav
 
-#begin Sounds/Horse Eating_01.wav
+#begin Sounds/Horse_Eating_01.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/Horse Eating_01.wav
+/build:Sounds/Horse_Eating_01.wav
 
-#begin Sounds/Horse Neigh_01.wav
+#begin Sounds/Horse_Neigh_01.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/Horse Neigh_01.wav
+/build:Sounds/Horse_Neigh_01.wav
 
-#begin Sounds/Horse Snort.wav
+#begin Sounds/Horse_Snort.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/Horse Snort.wav
+/build:Sounds/Horse_Snort.wav
 
-#begin Sounds/Menu select 2_01.wav
+#begin Sounds/Menu_Select_01.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/Menu select 2_01.wav
+/build:Sounds/Menu_Select_01.wav
 
-#begin Sounds/Menu Select_01.wav
+#begin Sounds/Menu_Select_02.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/Menu Select_01.wav
+/build:Sounds/Menu_Select_02.wav
 
-#begin Sounds/UI Select 2_01.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
+#begin Sounds/Music.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
 /processorParam:Quality=Best
-/build:Sounds/UI Select 2_01.wav
+/build:Sounds/Music.mp3
 
-#begin Sounds/UI Select_01.wav
+#begin Sounds/UI_Select_01.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/UI Select_01.wav
+/build:Sounds/UI_Select_01.wav
+
+#begin Sounds/UI_Select_02.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/UI_Select_02.wav
 
 #begin Sprites/ball.png
 /importer:TextureImporter
@@ -936,4 +942,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:UI/UI_GroomBar.png
+
+#begin UI/UI_side.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI/UI_side.png
 
