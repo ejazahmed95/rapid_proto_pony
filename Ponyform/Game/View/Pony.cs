@@ -198,6 +198,23 @@ namespace Ponyform.Game.View {
         
         private void OnPartGroomed(object data)
         {
+            if (!Utils.TryConvertVal(data, out GroomInfo info)){
+                return;
+            }
+            switch (info.groomPart) {
+                case GroomPart.Hair:
+                    _currentData.hairStyle = info.ponyHairStyle;
+                    UpdateHairTexturesForPony();
+                    break;
+                case GroomPart.Body:
+                    break;
+                case GroomPart.Tail:
+                    _currentData.tailStyle = info.ponyTailStyle;
+                    UpdateTailTexturesForPony();
+                    break;
+                default:
+                    break;
+            }
             Logger.i("Pony", "Grooming Ended");
         }
         #endregion

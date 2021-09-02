@@ -12,7 +12,7 @@ namespace Ponyform.Game.View {
         private GestureManager _gm;
 
         private Image bg;
-        private DraggableIcon hairGroom, tailGroom;
+        private DraggableIcon brush, comb, curlingIron;
 
         private Gesture gesture;
         
@@ -27,22 +27,23 @@ namespace Ponyform.Game.View {
 
         private void createView() {
             bg = new Image(_am.button_bottom_bg);
-            hairGroom = new DraggableIcon(_am.ball);
-            tailGroom = new DraggableIcon(_am.ball);
+            brush = new DraggableIcon(_am.groom_brush);
+            comb = new DraggableIcon(_am.groom_comb);
+            curlingIron = new DraggableIcon(_am.groom_curling_iron);
 
             //Test code for gesture
             //if (gesture == null) gesture = new Gesture(_gm.setStyle(hairGroom, GroomPart.Hair, 0));
             //Add(gesture);
 
 
-            AddAll( bg, hairGroom, tailGroom);
+            AddAll( bg, brush, comb, curlingIron);
         }
 
         private void arrangeView() {
             float xPos = 0, yPos = 0, iconWidth = 100f;
-            hairGroom.SetPosition(xPos, yPos);
+            brush.SetPosition(xPos, yPos);
             xPos += iconWidth;
-            tailGroom.SetPosition(xPos, yPos);
+            comb.SetPosition(xPos, yPos);
             xPos += iconWidth;
 
             SetSize(new Vector2(bg.size.X, bg.size.Y));
