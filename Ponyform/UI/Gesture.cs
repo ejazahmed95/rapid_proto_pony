@@ -42,14 +42,14 @@ namespace Ponyform.UI
 
         #region Methods
 
-        public Gesture(Texture2D texture, List<Vector2> positions, Vector2 size, DraggableIcon draggableIcon, Color nextColor, Action started, Action finished)
+        public Gesture(Texture2D texture, List<Vector2> positions, Vector2 size, DraggableIcon draggableIcon, Color nextColor, Action started, Action finished, bool over)
         {
-            ResetGesture(texture, positions, size, draggableIcon, nextColor, started, finished);
+            ResetGesture(texture, positions, size, draggableIcon, nextColor, started, finished, over);
         }
 
-        public Gesture(GestureAttributes gestureAttributes)
+        public Gesture(GestureAttributes gestureAttributes, bool over)
         {
-            ResetGesture(gestureAttributes);
+            ResetGesture(gestureAttributes, over);
         }
 
         internal void RegisterAction(Action started, Action finished)
@@ -74,8 +74,10 @@ namespace Ponyform.UI
             }
             else
             {
+                Remove(_nextCollisionBox);
                 _nextCollisionBox = _collisionBoxes.Dequeue();
                 Add(_nextCollisionBox);
+                Remove(_nextImage);
                 _nextImage = _images.Dequeue();
                 Add(_nextImage);
                 _nextImage.SetColor(_nextColor);
@@ -84,12 +86,31 @@ namespace Ponyform.UI
 
         }
 
-        public void ResetGesture(Texture2D texture, List<Vector2> positions, Vector2 size, DraggableIcon draggableIcon, Color nextColor, Action started, Action finished)
+        public void ResetGesture(Texture2D texture, List<Vector2> positions, Vector2 size, DraggableIcon draggableIcon, Color nextColor, Action started, Action finished, bool over)
         {
             Positions = positions;
             _draggableIcon = draggableIcon;
             _nextColor = nextColor;
 
+            if (_collisionBoxes != null)
+            {
+                foreach (CollisionBox collisionBox in _collisionBoxes) Remove(collisionBox);
+            }
+
+            if (_images != null)
+            {
+                foreach (Image image in _images) Remove(image);
+            }
+            if (_nextCollisionBox != null)
+            {
+                Remove(_nextCollisionBox);
+                _nextCollisionBox = null;
+            }
+            if (_nextImage != null)
+            {
+                Remove(_nextImage);
+                _nextImage = null;
+            }
             _collisionBoxes = new Queue<CollisionBox>();
             _images = new Queue<Image>();
 
@@ -105,19 +126,38 @@ namespace Ponyform.UI
                 _images.Enqueue(image);
                 Add(image);
             }
-            Over = false;
+            Over = over;
 
             RegisterAction(started, finished);
 
             Logger.i("Gesture", "Reseted");
         }
 
-        public void ResetGesture(GestureAttributes gestureAttributes)
+        public void ResetGesture(GestureAttributes gestureAttributes, bool over)
         {
             Positions = gestureAttributes.positions;
             _draggableIcon = gestureAttributes.draggableIcon;
             _nextColor = gestureAttributes.nextColor;
 
+            if (_collisionBoxes != null)
+            {
+                foreach (CollisionBox collisionBox in _collisionBoxes) Remove(collisionBox);
+            }
+
+            if (_images != null)
+            {
+                foreach (Image image in _images) Remove(image);
+            }
+            if (_nextCollisionBox != null)
+            {
+                Remove(_nextCollisionBox);
+                _nextCollisionBox = null;
+            }
+            if (_nextImage != null)
+            {
+                Remove(_nextImage);
+                _nextImage = null;
+            }
             _collisionBoxes = new Queue<CollisionBox>();
             _images = new Queue<Image>();
 
@@ -133,7 +173,7 @@ namespace Ponyform.UI
                 _images.Enqueue(image);
                 Add(image);
             }
-            Over = false;
+            Over = over;
 
             RegisterAction(gestureAttributes.started, gestureAttributes.finished);
 

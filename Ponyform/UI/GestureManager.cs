@@ -114,6 +114,7 @@ namespace Ponyform.UI
 
                             return style;
                         default:
+                            Logger.d("GestureManager", "Reset to empty");
                             style.draggableIcon = draggableIcon;
                             style.texture = _am.star;
                             style.positions = new List<Vector2>();
