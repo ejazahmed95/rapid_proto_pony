@@ -20,7 +20,7 @@ namespace Ponyform.UI
 
         private Vector2 originalPos;
         private MouseListener _mouseListener;
-        private CollisionBox _mouthBox;
+        private CollisionBox _interactiveBox;
         private Action _onEnterCb;
         private Action _onExitCb;
 
@@ -84,9 +84,9 @@ namespace Ponyform.UI
             return mouseRectangle.Intersects(Rectangle);
         }
 
-        internal void RegisterCollider(CollisionBox mouthBox, Action onEnterCb, Action onExitCb)
+        internal void RegisterCollider(CollisionBox interactiveBox, Action onEnterCb, Action onExitCb)
         {
-            _mouthBox = mouthBox;
+            _interactiveBox = interactiveBox;
             _onEnterCb = onEnterCb;
             _onExitCb = onExitCb;
         }
@@ -117,8 +117,8 @@ namespace Ponyform.UI
             // }
             //
             // _previousMouse = _currentMouse;
-            if(_mouthBox != null) {
-                if (_mouthBox.Intersects(Rectangle))
+            if(_interactiveBox != null) {
+                if (_interactiveBox.Intersects(Rectangle))
                 {
                     if (!Interacting)
                     {

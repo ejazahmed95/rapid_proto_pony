@@ -59,7 +59,9 @@ namespace Ponyform.UI {
         #region Gameloop
 
         public virtual void Update(GameTime gameTime){
+            //globalPosition = origin + pos;
             foreach (var gameObject in _children){
+                if (!gameObject.Enabled()) continue;
                 gameObject.Update(gameTime);
             }
         }

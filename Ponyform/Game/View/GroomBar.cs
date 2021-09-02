@@ -3,6 +3,7 @@ using MonoGame.Extended;
 using Ponyform.Event;
 using Ponyform.UI;
 using Ponyform.Utilities;
+using System.Collections.Generic;
 
 namespace Ponyform.Game.View {
     public class GroomBar: GameObject {
@@ -11,6 +12,8 @@ namespace Ponyform.Game.View {
 
         private Image bg;
         private DraggableIcon hairGroom, tailGroom;
+
+        private Gesture gesture;
         
         public GroomBar(){
             _am = DI.Get<AssetManager>();
@@ -25,7 +28,23 @@ namespace Ponyform.Game.View {
             hairGroom = new DraggableIcon(_am.ball);
             tailGroom = new DraggableIcon(_am.ball);
 
-            AddAll( bg, hairGroom, tailGroom);
+
+            //test code for gesture
+            //List<Vector2> gesturePositions = new List<Vector2>();
+            //gesturePositions.Add(new Vector2(250, 0));
+            //gesturePositions.Add(new Vector2(500, 0));
+            //gesturePositions.Add(new Vector2(500, 250));
+            //gesturePositions.Add(new Vector2(250, 250));
+
+            //gesture = new Gesture(_am.star, gesturePositions, new Vector2(10, 10), hairGroom);
+            //gesture.SetPosition(200, -400);
+            //gesture.NextColor = new Color(0, 0, 0);
+            //gesture.RegisterCollider(() => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = GroomPart.Hair }), 
+            //    () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = GroomPart.Hair }));
+
+
+
+            AddAll( bg, hairGroom, tailGroom, gesture);
         }
 
         private void arrangeView() {

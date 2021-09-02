@@ -15,6 +15,7 @@ namespace Ponyform.Game
         public Texture2D button_feed, button_groom;
         public Texture2D food_apple, food_bb, food_grass, food_milk;
         public Texture2D button_side_bg, button_bottom_bg;
+        public Texture2D star;
 
         // Placeholder assets
         public Texture2D ball;
@@ -56,6 +57,7 @@ namespace Ponyform.Game
             button_bottom_bg = content.Load<Texture2D>("UI/UI_FoodBar");
             
             ball = content.Load<Texture2D>("Sprites/ball");
+            star = content.Load <Texture2D>("UI/UI_star");
         }
     }
 }
