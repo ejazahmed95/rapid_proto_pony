@@ -29,97 +29,83 @@ namespace Ponyform.UI
 
         }
 
-        public GestureAttributes setStyle1(DraggableIcon draggableIcon, GroomPart groomPart)
+        public GestureAttributes setStyle(DraggableIcon draggableIcon, GroomPart groomPart, int styleNum)
         {
+            styleNum %= 5;
             GestureAttributes style = new GestureAttributes();
 
-            style.draggableIcon = draggableIcon;
-            style.texture = _am.star;
-            style.positions = new List<Vector2>();
-            style.positions.Add(new Vector2(1000, -500));
-            style.positions.Add(new Vector2(1300, -500));
-            style.positions.Add(new Vector2(1300, -200));
-            style.positions.Add(new Vector2(1000, -200));
-            //...
-            style.size = new Vector2(10, 10);
-            style.nextColor = new Color(0, 0, 0);
-            style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle1, ponyTailStyle = PonyTailStyle.TailStyle1 });
-            style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle1, ponyTailStyle = PonyTailStyle.TailStyle1 });
+            switch (styleNum)
+            {
+                case 0:
+                    style.draggableIcon = draggableIcon;
+                    style.texture = _am.star;
+                    style.positions = new List<Vector2>();
+                    style.positions.Add(new Vector2(1000, -500));
+                    style.positions.Add(new Vector2(1300, -500));
+                    style.positions.Add(new Vector2(1300, -200));
+                    style.positions.Add(new Vector2(1000, -200));
+                    //...
+                    style.size = new Vector2(10, 10);
+                    style.nextColor = new Color(0, 0, 0);
+                    style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle1, ponyTailStyle = PonyTailStyle.TailStyle1 });
+                    style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle1, ponyTailStyle = PonyTailStyle.TailStyle1 });
 
-            return style;
+                    return style;
+                case 1:
+                    style.draggableIcon = draggableIcon;
+                    style.texture = _am.ball;
+                    style.positions = new List<Vector2>();
+                    style.positions.Add(new Vector2(1000, -500));
+                    style.positions.Add(new Vector2(1300, -500));
+                    style.positions.Add(new Vector2(1300, -200));
+                    style.positions.Add(new Vector2(1000, -200));
+                    //...
+                    style.size = new Vector2(10, 10);
+                    style.nextColor = new Color(0, 0, 0);
+                    style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle2, ponyTailStyle = PonyTailStyle.TailStyle2 });
+                    style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle2, ponyTailStyle = PonyTailStyle.TailStyle2 });
+
+                    return style;
+                case 2:
+                    style.draggableIcon = draggableIcon;
+                    style.texture = _am.star;
+                    style.positions = new List<Vector2>();
+                    style.positions.Add(new Vector2(0, 0));
+                    //...
+                    style.size = new Vector2(10, 10);
+                    style.nextColor = new Color(0, 0, 0);
+                    style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle3, ponyTailStyle = PonyTailStyle.TailStyle3 });
+                    style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle3, ponyTailStyle = PonyTailStyle.TailStyle3 });
+
+                    return style;
+                case 3:
+                    style.draggableIcon = draggableIcon;
+                    style.texture = _am.star;
+                    style.positions = new List<Vector2>();
+                    style.positions.Add(new Vector2(0, 0));
+                    //...
+                    style.size = new Vector2(10, 10);
+                    style.nextColor = new Color(0, 0, 0);
+                    style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle4, ponyTailStyle = PonyTailStyle.TailStyle4 });
+                    style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle4, ponyTailStyle = PonyTailStyle.TailStyle4 });
+
+                    return style;
+                case 4:
+                    style.draggableIcon = draggableIcon;
+                    style.texture = _am.star;
+                    style.positions = new List<Vector2>();
+                    style.positions.Add(new Vector2(0, 0));
+                    //...
+                    style.size = new Vector2(10, 10);
+                    style.nextColor = new Color(0, 0, 0);
+                    style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle5, ponyTailStyle = PonyTailStyle.TailStyle5 });
+                    style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle5, ponyTailStyle = PonyTailStyle.TailStyle5 });
+
+                    return style;
+                default:
+                    return style;
+            }
         }
-
-        public GestureAttributes setStyle2(DraggableIcon draggableIcon, GroomPart groomPart)
-        {
-            GestureAttributes style = new GestureAttributes();
-
-            style.draggableIcon = draggableIcon;
-            style.texture = _am.ball;
-            style.positions = new List<Vector2>();
-            style.positions.Add(new Vector2(1000, -500));
-            style.positions.Add(new Vector2(1300, -500));
-            style.positions.Add(new Vector2(1300, -200));
-            style.positions.Add(new Vector2(1000, -200));
-            //...
-            style.size = new Vector2(10, 10);
-            style.nextColor = new Color(0, 0, 0);
-            style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle2, ponyTailStyle = PonyTailStyle.TailStyle2 });
-            style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle2, ponyTailStyle = PonyTailStyle.TailStyle2 });
-
-            return style;
-        }
-
-        public GestureAttributes setStyle3(DraggableIcon draggableIcon, GroomPart groomPart)
-        {
-            GestureAttributes style = new GestureAttributes();
-
-            style.draggableIcon = draggableIcon;
-            style.texture = _am.star;
-            style.positions = new List<Vector2>();
-            style.positions.Add(new Vector2(0, 0));
-            //...
-            style.size = new Vector2(10, 10);
-            style.nextColor = new Color(0, 0, 0);
-            style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle3, ponyTailStyle = PonyTailStyle.TailStyle3 });
-            style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle3, ponyTailStyle = PonyTailStyle.TailStyle3 });
-
-            return style;
-        }
-
-        public GestureAttributes setStyle4(DraggableIcon draggableIcon, GroomPart groomPart)
-        {
-            GestureAttributes style = new GestureAttributes();
-
-            style.draggableIcon = draggableIcon;
-            style.texture = _am.star;
-            style.positions = new List<Vector2>();
-            style.positions.Add(new Vector2(0, 0));
-            //...
-            style.size = new Vector2(10, 10);
-            style.nextColor = new Color(0, 0, 0);
-            style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle4, ponyTailStyle = PonyTailStyle.TailStyle4 });
-            style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle4, ponyTailStyle = PonyTailStyle.TailStyle4 });
-
-            return style;
-        }
-
-        public GestureAttributes setStyle5(DraggableIcon draggableIcon, GroomPart groomPart)
-        {
-            GestureAttributes style = new GestureAttributes();
-
-            style.draggableIcon = draggableIcon;
-            style.texture = _am.star;
-            style.positions = new List<Vector2>();
-            style.positions.Add(new Vector2(0, 0));
-            //...
-            style.size = new Vector2(10, 10);
-            style.nextColor = new Color(0, 0, 0);
-            style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle5, ponyTailStyle = PonyTailStyle.TailStyle5 });
-            style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle5, ponyTailStyle = PonyTailStyle.TailStyle5 });
-
-            return style;
-        }
-
         #endregion
     }
 
