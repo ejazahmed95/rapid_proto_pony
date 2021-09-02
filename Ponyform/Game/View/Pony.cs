@@ -2,6 +2,7 @@
 using System.Data;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using Ponyform.Event;
 using Ponyform.UI;
 using Ponyform.Utilities;
@@ -70,7 +71,28 @@ namespace Ponyform.Game.View {
 
         public override void Update(GameTime gameTime){
             // Update pony's colors
+            if (!_currentData.bodyColor.Equals(_targetData.bodyColor)){
+                _currentData.bodyColor = interpolate(_currentData.bodyColor.ToVector3(), _targetData.bodyColor.ToVector3(),
+                    gameTime.GetElapsedSeconds(), 10);
+                pony_mid.SetColor(_currentData.bodyColor);
+            }
             base.Update(gameTime);
+        }
+
+        private Color interpolate(Vector3 current, Vector3 target, float elapsedSec, int i){
+            Vector3 res = new Vector3(current.X, current.Y, current.Z);
+            float max = (255f / i) * elapsedSec;
+            res.X = moveTowards(res.X, target.X, max);
+            res.Y = moveTowards(res.Y, target.Y, max);
+            res.Z = moveTowards(res.Z, target.Z, max);
+            return new Color(res);
+        }
+
+        private float moveTowards(float current, float target, float max){
+            if (Math.Abs(target - current) < max){
+                return target;
+            }
+            return current + Math.Sign(target - current) * max;
         }
 
         #region Pony View Updates
