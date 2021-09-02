@@ -47,8 +47,9 @@ namespace Ponyform.Utilities {
         }
 
         public static void logFunc(string line) {
-            Console.WriteLine(line);
-            // Debug.WriteLine(line);
+            //Console.WriteLine(line);
+            Debug.WriteLine(line);
+
         }
     }
 }
