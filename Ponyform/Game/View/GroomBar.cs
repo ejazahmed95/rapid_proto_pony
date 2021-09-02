@@ -9,6 +9,7 @@ namespace Ponyform.Game.View {
     public class GroomBar: GameObject {
         private AssetManager _am;
         private EventManager _em;
+        private GestureManager _gm;
 
         private Image bg;
         private DraggableIcon hairGroom, tailGroom;
@@ -18,6 +19,7 @@ namespace Ponyform.Game.View {
         public GroomBar(){
             _am = DI.Get<AssetManager>();
             _em = DI.Get<EventManager>();
+            _gm = DI.Get<GestureManager>();
             createView();
             arrangeView();
             _em.RegisterListener(GameEvent.ActivitySet, onActivitySet);
@@ -28,20 +30,9 @@ namespace Ponyform.Game.View {
             hairGroom = new DraggableIcon(_am.ball);
             tailGroom = new DraggableIcon(_am.ball);
 
-
-            //test code for gesture
-            //List<Vector2> gesturePositions = new List<Vector2>();
-            //gesturePositions.Add(new Vector2(250, 0));
-            //gesturePositions.Add(new Vector2(500, 0));
-            //gesturePositions.Add(new Vector2(500, 250));
-            //gesturePositions.Add(new Vector2(250, 250));
-
-            //gesture = new Gesture(_am.star, gesturePositions, new Vector2(10, 10), hairGroom);
-            //gesture.SetPosition(200, -400);
-            //gesture.NextColor = new Color(0, 0, 0);
-            //gesture.RegisterCollider(() => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = GroomPart.Hair }), 
-            //    () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = GroomPart.Hair }));
-
+            //Test code for gesture
+            //if (gesture == null) gesture = new Gesture(_gm.setStyle(hairGroom, GroomPart.Hair, 0));
+            //Add(gesture);
 
 
             AddAll( bg, hairGroom, tailGroom);
@@ -64,6 +55,14 @@ namespace Ponyform.Game.View {
             }
             Logger.i("GroomBar", $"Activity Set = {info.type}");
             SetVisibility(info.type == ActivityType.GROOM);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            //Test code for gesture
+            //if (gesture.Over) gesture.ResetGesture(_gm.setStyle(hairGroom, GroomPart.Hair, 1));
+
+            base.Update(gameTime);
         }
     }
 }
