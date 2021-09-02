@@ -52,7 +52,7 @@ namespace Ponyform.UI
                     return style;
                 case 1:
                     style.draggableIcon = draggableIcon;
-                    style.texture = _am.ball;
+                    style.texture = _am.star;
                     style.positions = new List<Vector2>();
                     style.positions.Add(new Vector2(1000, -500));
                     style.positions.Add(new Vector2(1300, -500));
@@ -69,7 +69,10 @@ namespace Ponyform.UI
                     style.draggableIcon = draggableIcon;
                     style.texture = _am.star;
                     style.positions = new List<Vector2>();
-                    style.positions.Add(new Vector2(0, 0));
+                    style.positions.Add(new Vector2(1000, -500));
+                    style.positions.Add(new Vector2(1300, -500));
+                    style.positions.Add(new Vector2(1300, -200));
+                    style.positions.Add(new Vector2(1000, -200));
                     //...
                     style.size = new Vector2(10, 10);
                     style.nextColor = new Color(0, 0, 0);
@@ -81,7 +84,10 @@ namespace Ponyform.UI
                     style.draggableIcon = draggableIcon;
                     style.texture = _am.star;
                     style.positions = new List<Vector2>();
-                    style.positions.Add(new Vector2(0, 0));
+                    style.positions.Add(new Vector2(1000, -500));
+                    style.positions.Add(new Vector2(1300, -500));
+                    style.positions.Add(new Vector2(1300, -200));
+                    style.positions.Add(new Vector2(1000, -200));
                     //...
                     style.size = new Vector2(10, 10);
                     style.nextColor = new Color(0, 0, 0);
@@ -93,7 +99,10 @@ namespace Ponyform.UI
                     style.draggableIcon = draggableIcon;
                     style.texture = _am.star;
                     style.positions = new List<Vector2>();
-                    style.positions.Add(new Vector2(0, 0));
+                    style.positions.Add(new Vector2(1000, -500));
+                    style.positions.Add(new Vector2(1300, -500));
+                    style.positions.Add(new Vector2(1300, -200));
+                    style.positions.Add(new Vector2(1000, -200));
                     //...
                     style.size = new Vector2(10, 10);
                     style.nextColor = new Color(0, 0, 0);
