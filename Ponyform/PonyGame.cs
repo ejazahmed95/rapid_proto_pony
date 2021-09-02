@@ -23,7 +23,7 @@ namespace Ponyform
             // Setup
             DI.Register(new GameInfra(this));
             DI.Register<AssetManager>(new AssetManager(Content));
-            DI.Register(new SoundManager());
+            DI.Register(new SoundManager(Content));
             DI.Register(new EventManager());
             _gameManager = new GameManager(); 
             DI.Register(_gameManager);
