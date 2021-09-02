@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
@@ -77,6 +78,7 @@ namespace Ponyform.Game.View {
             ponyMouth.SetPosition(0.37f*size.X, 0.32f*size.Y);
             ponyMouth.SetVisibility(false);
 
+            // _targetData.bodyColor = new Color(new Vector3(0.5f, 0.1f, 0.1f));
             UpdateHairTexturesForPony();
             UpdateTailTexturesForPony();
             eyes.SetPosition(0.05f*gameInfra.GetGameWidth(), 0.123f*gameInfra.GetGameHeight());
@@ -104,7 +106,7 @@ namespace Ponyform.Game.View {
             // Update pony's colors
             if (!_currentData.bodyColor.Equals(_targetData.bodyColor)){
                 _currentData.bodyColor = interpolate(_currentData.bodyColor.ToVector3(), _targetData.bodyColor.ToVector3(),
-                    gameTime.GetElapsedSeconds(), 10);
+                    gameTime.GetElapsedSeconds(), 30);
                 pony_mid.SetColor(_currentData.bodyColor);
             }
             base.Update(gameTime);
@@ -112,7 +114,8 @@ namespace Ponyform.Game.View {
 
         private Color interpolate(Vector3 current, Vector3 target, float elapsedSec, int i){
             Vector3 res = new Vector3(current.X, current.Y, current.Z);
-            float max = (255f / i) * elapsedSec;
+            float max = (1f / i) * elapsedSec;
+            Logger.i("INTERPOLATE", $"{current}  {target}  {elapsedSec}  {i}");
             res.X = moveTowards(res.X, target.X, max);
             res.Y = moveTowards(res.Y, target.Y, max);
             res.Z = moveTowards(res.Z, target.Z, max);
@@ -123,7 +126,9 @@ namespace Ponyform.Game.View {
             if (Math.Abs(target - current) < max){
                 return target;
             }
-            return current + Math.Sign(target - current) * max;
+
+            if (target < current) return current - max;
+            return current + max;
         }
 
         #region Pony View Updates
@@ -197,11 +202,28 @@ namespace Ponyform.Game.View {
             ponyMouth.Play(4, 50);
             dm.showDialogue(info.foodItem);
             eyes.Blink(1);
+            switch (info.foodItem){
+                case Food.Apple:
+                    // _targetData.bodyColor = Color.Red;
+                    break;
+                case Food.Milk:
+                    // _targetData.bodyColor = Color.White;
+                    break;
+                case Food.Grass:
+                    // _targetData.bodyColor = Color.Green;
+                    break;
+                case Food.Blueberry:
+                    // _targetData.bodyColor = Color.Blue;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         private void OnEatingEnd(object data)
         {
             Logger.i("Pony", "Stopped Eating");
+            _targetData.bodyColor = new Color(_currentData.bodyColor.ToVector3());
             ponyMouth.Reset();
             ponyMouth.SetVisibility(false);
             dm.hideDialogue();
