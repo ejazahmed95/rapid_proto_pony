@@ -14,6 +14,11 @@ namespace Ponyform.Game.View {
         private Image bg;
         private DraggableIcon brush, comb, curlingIron;
 
+        private bool _preHoldingBrush = false, _preHoldingComb = false;
+
+        private int hairStyle = 0;
+        private int tailStyle = 0;
+
         private Gesture gesture;
         
         public GroomBar(){
@@ -35,6 +40,12 @@ namespace Ponyform.Game.View {
             //if (gesture == null) gesture = new Gesture(_gm.setStyle(hairGroom, GroomPart.Hair, 0));
             //Add(gesture);
 
+            if (gesture == null)
+            {
+                gesture = new Gesture(_gm.setStyle(brush, GroomPart.Hair, -1));
+                Add(gesture);
+                gesture.Over = true;
+            }
 
             AddAll( bg, brush, comb, curlingIron);
         }
@@ -45,6 +56,8 @@ namespace Ponyform.Game.View {
             xPos += iconWidth;
             comb.SetPosition(xPos, yPos);
             xPos += iconWidth;
+
+            curlingIron.SetPosition(xPos, yPos);
 
             SetSize(new Vector2(bg.size.X, bg.size.Y));
             SetVisibility(false);
@@ -62,6 +75,38 @@ namespace Ponyform.Game.View {
         {
             //Test code for gesture
             //if (gesture.Over) gesture.ResetGesture(_gm.setStyle(hairGroom, GroomPart.Hair, 1));
+
+            if (brush.Holding)
+            {
+                if (!_preHoldingBrush)
+                {
+                    if (gesture.Over) gesture.ResetGesture(_gm.setStyle(brush, GroomPart.Hair, hairStyle++ % 5));
+                    _preHoldingBrush = true;
+                }
+            }
+            else
+            {
+                if (_preHoldingBrush)
+                {
+                    _preHoldingBrush = false;
+                }
+            }
+
+            if (comb.Holding)
+            {
+                if (!_preHoldingComb)
+                {
+                    if (gesture.Over) gesture.ResetGesture(_gm.setStyle(comb, GroomPart.Tail, tailStyle++ % 5));
+                    _preHoldingComb = true;
+                }
+            }
+            else
+            {
+                if (_preHoldingComb)
+                {
+                    _preHoldingComb = false;
+                }
+            }
 
             base.Update(gameTime);
         }
