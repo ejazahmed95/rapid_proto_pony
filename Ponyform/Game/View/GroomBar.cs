@@ -14,6 +14,9 @@ namespace Ponyform.Game.View {
         private Image bg;
         private DraggableIcon brush, comb, curlingIron;
 
+        private int _horizontalAmount = 0;
+        private int _verticalAmount = 0;
+
         private bool _preHoldingBrush = false, _preHoldingComb = false;
 
         private int hairStyle = 0;
@@ -42,16 +45,28 @@ namespace Ponyform.Game.View {
 
             if (gesture == null)
             {
-                gesture = new Gesture(_gm.setStyle(brush, GroomPart.Hair, -1));
+                gesture = new Gesture(_gm.setStyle(brush, GroomPart.Hair, -1), true);
                 Add(gesture);
-                gesture.Over = true;
             }
 
             AddAll( bg, brush, comb, curlingIron);
+
+            _horizontalAmount += 3;
+            _verticalAmount += 1;
         }
 
         private void arrangeView() {
-            float xPos = 0, yPos = 0, iconWidth = 100f;
+            float xPos = 0, yPos = 0;
+            float iconWidth = bg.size.X / (_horizontalAmount + 1);
+            float iconHeight = bg.size.Y / (_verticalAmount + 1);
+
+            float biasHeight = - bg.size.Y * 0.8f;
+
+            yPos += biasHeight;
+
+            xPos += iconWidth;
+            yPos += iconHeight;
+
             brush.SetPosition(xPos, yPos);
             xPos += iconWidth;
             comb.SetPosition(xPos, yPos);
@@ -80,7 +95,7 @@ namespace Ponyform.Game.View {
             {
                 if (!_preHoldingBrush)
                 {
-                    if (gesture.Over) gesture.ResetGesture(_gm.setStyle(brush, GroomPart.Hair, hairStyle++ % 5));
+                    if (gesture.Over) gesture.ResetGesture(_gm.setStyle(brush, GroomPart.Hair, hairStyle++ % 5), false);
                     _preHoldingBrush = true;
                 }
             }
@@ -88,6 +103,8 @@ namespace Ponyform.Game.View {
             {
                 if (_preHoldingBrush)
                 {
+                    gesture.ResetGesture(_gm.setStyle(brush, GroomPart.Hair, -1), true);
+                    Logger.d("GroomBar", "destory the gesture");
                     _preHoldingBrush = false;
                 }
             }
@@ -96,7 +113,7 @@ namespace Ponyform.Game.View {
             {
                 if (!_preHoldingComb)
                 {
-                    if (gesture.Over) gesture.ResetGesture(_gm.setStyle(comb, GroomPart.Tail, tailStyle++ % 5));
+                    if (gesture.Over) gesture.ResetGesture(_gm.setStyle(comb, GroomPart.Tail, tailStyle++ % 5), false);
                     _preHoldingComb = true;
                 }
             }
@@ -104,6 +121,8 @@ namespace Ponyform.Game.View {
             {
                 if (_preHoldingComb)
                 {
+                    gesture.ResetGesture(_gm.setStyle(brush, GroomPart.Tail, -1), true);
+                    Logger.d("GroomBar", "destory the gesture");
                     _preHoldingComb = false;
                 }
             }
