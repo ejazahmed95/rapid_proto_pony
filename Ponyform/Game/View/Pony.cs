@@ -57,10 +57,9 @@ namespace Ponyform.Game.View {
             pony_mid = new Image(_am.pony_mid);
             ponyMouth = new Image(_am.pony_mouth_1, _am.pony_mouth_2, _am.pony_mouth_3);
             pony_hair_back = new Image(_am.pony_hair0_back);
-            pony_hair_front = new Image(_am.pony_hair0_front);
+            pony_hair_front = new DraggableIcon(_am.pony_hair0_front);
             pony_tail = new Image(_am.pony_tail0);
             eyes = new PonyEyes();
-            
             AddAll(pony_hair_back, pony_tail, pony_mid, pony_hair_front, ponyMouth, eyes);
             
             dm = new DialogManager();
@@ -80,6 +79,7 @@ namespace Ponyform.Game.View {
             ponyMouth.SetVisibility(false);
 
             // _targetData.bodyColor = new Color(new Vector3(0.5f, 0.1f, 0.1f));
+            _targetData.hairStyle = PonyHairStyle.HairStyle1;
             UpdateHairTexturesForPony();
             UpdateTailTexturesForPony();
             eyes.SetPosition(0.05f*gameInfra.GetGameWidth(), 0.123f*gameInfra.GetGameHeight());
@@ -153,37 +153,37 @@ namespace Ponyform.Game.View {
                 case PonyHairStyle.Default:
                     back_ratio = new Vector2(-0.08f, 0.056f);
                     front_ratio = new Vector2(0.135f, 0.036f);
-                    pony_hair_back.UpdateTextures(_am.pony_hair0_back);
+                    pony_hair_back.UpdateTextures(_am.pony_hair0_back, _am.pony_hair0_back_1, _am.pony_hair0_back_2, _am.pony_hair0_back_3,_am.pony_hair0_back_4,_am.pony_hair0_back_5,_am.pony_hair0_back_6, _am.pony_hair0_back_7);
                     pony_hair_front.UpdateTextures(_am.pony_hair0_front);
                     break;
                 case PonyHairStyle.HairStyle1:
                     back_ratio = new Vector2(-0.56f, 0.023f);
-                    front_ratio = new Vector2(0.135f, 0.036f);
-                    pony_hair_back.UpdateTextures(_am.pony_hair1_back);
+                    front_ratio = new Vector2(0.004f, 0.036f);
+                    pony_hair_back.UpdateTextures(_am.pony_hair1_back, _am.pony_hair1_back_1, _am.pony_hair1_back_2, _am.pony_hair1_back_3, _am.pony_hair1_back_4, _am.pony_hair1_back_5, _am.pony_hair1_back_6, _am.pony_hair1_back_7);
                     pony_hair_front.UpdateTextures(_am.pony_hair1_front);
                     break;
                 case PonyHairStyle.HairStyle2:
                     back_ratio = new Vector2(-0.25f, 0.054f);
                     front_ratio = new Vector2(0.135f, 0.036f);
-                    pony_hair_back.UpdateTextures(_am.pony_hair2_back);
+                    pony_hair_back.UpdateTextures(_am.pony_hair2_back, _am.pony_hair2_back_1, _am.pony_hair2_back_2, _am.pony_hair2_back_3, _am.pony_hair2_back_4, _am.pony_hair2_back_5, _am.pony_hair2_back_6, _am.pony_hair2_back_7);
                     pony_hair_front.UpdateTextures(_am.pony_hair2_front);
                     break;
                 case PonyHairStyle.HairStyle3:
                     back_ratio = new Vector2(-0.384f, 0.054f);
                     front_ratio = new Vector2(0.135f, 0.036f);
-                    pony_hair_back.UpdateTextures(_am.pony_hair3_back);
+                    pony_hair_back.UpdateTextures(_am.pony_hair3_back, _am.pony_hair3_back_1, _am.pony_hair3_back_2, _am.pony_hair3_back_3, _am.pony_hair3_back_4, _am.pony_hair3_back_5, _am.pony_hair3_back_6, _am.pony_hair3_back_7);
                     pony_hair_front.UpdateTextures(_am.pony_hair3_front);
                     break;
                 case PonyHairStyle.HairStyle4:
                     back_ratio = new Vector2(-0.343f, 0.039f);
                     front_ratio = new Vector2(0.135f, 0.036f);
-                    pony_hair_back.UpdateTextures(_am.pony_hair4_back);
+                    pony_hair_back.UpdateTextures(_am.pony_hair4_back, _am.pony_hair4_back_1, _am.pony_hair4_back_2, _am.pony_hair4_back_3, _am.pony_hair4_back_4, _am.pony_hair4_back_5, _am.pony_hair4_back_6, _am.pony_hair4_back_7);
                     pony_hair_front.UpdateTextures(_am.pony_hair4_front);
                     break;
                 case PonyHairStyle.HairStyle5:
                     back_ratio = new Vector2(-0.243f, 0.042f);
                     front_ratio = new Vector2(0.135f, 0.036f);
-                    pony_hair_back.UpdateTextures(_am.pony_hair5_back);
+                    pony_hair_back.UpdateTextures(_am.pony_hair5_back, _am.pony_hair5_back_1, _am.pony_hair5_back_2, _am.pony_hair5_back_3, _am.pony_hair5_back_4, _am.pony_hair5_back_5, _am.pony_hair5_back_6, _am.pony_hair5_back_7);
                     pony_hair_front.UpdateTextures(_am.pony_hair5_front);
                     break;
                 default:
@@ -245,6 +245,7 @@ namespace Ponyform.Game.View {
             if (!Utils.TryConvertVal(data, out GroomInfo info)){
                 return;
             }
+            pony_hair_back.Play(5, 100);
             Logger.i("Pony", $"Grooming Started, part = {info.groomPart}, hairStyle = {info.ponyHairStyle}, tailStyle = {info.ponyTailStyle}");
         }
         
@@ -267,6 +268,7 @@ namespace Ponyform.Game.View {
                 default:
                     break;
             }
+            pony_hair_back.Reset();
             Logger.i("Pony", "Grooming Ended");
         }
         #endregion

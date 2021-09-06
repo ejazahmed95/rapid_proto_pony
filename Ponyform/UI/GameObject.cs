@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
 using Ponyform.Game;
 using Ponyform.Utilities;
 
-namespace Ponyform.UI {
+namespace Ponyform.UI
+{
     public class GameObject {
         public Vector2 pos { get; private set; }
         public Vector2 size { get; private set; }
