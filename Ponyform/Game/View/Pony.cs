@@ -60,7 +60,7 @@ namespace Ponyform.Game.View {
             pony_hair_front = new DraggableIcon(_am.pony_hair0_front);
             pony_tail = new Image(_am.pony_tail0);
             eyes = new PonyEyes();
-            AddAll(pony_hair_back, pony_tail, pony_mid, pony_hair_front, ponyMouth, eyes);
+            AddAll(pony_hair_back, pony_tail, pony_mid, ponyMouth, eyes, pony_hair_front);
             
             dm = new DialogManager();
             Add(dm);
