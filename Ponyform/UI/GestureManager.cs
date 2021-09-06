@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Ponyform.Utilities;
 using Ponyform.Game;
 using Ponyform.Event;
 using Ponyform.Game.View;
-using Ponyform.UI;
 
 namespace Ponyform.UI
 {

@@ -8,7 +8,12 @@ namespace Ponyform.Game
 
         ContentManager content;
 
+        // Music
         public Song song;
+        
+        // Sound Effects
+        
+        
         public SoundManager(ContentManager content)
         {
             this.content = content;

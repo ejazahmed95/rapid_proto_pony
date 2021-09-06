@@ -38,10 +38,6 @@ namespace Ponyform.Game.View {
             brush = new DraggableIcon(_am.groom_brush);
             comb = new DraggableIcon(_am.groom_comb);
             curlingIron = new DraggableIcon(_am.groom_curling_iron);
-            
-            brush.SetScale(0.7f);
-            comb.SetScale(0.7f);
-            curlingIron.SetScale(0.7f);
 
             //Test code for gesture
             //if (gesture == null) gesture = new Gesture(_gm.setStyle(hairGroom, GroomPart.Hair, 0));

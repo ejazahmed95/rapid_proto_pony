@@ -217,7 +217,7 @@
 /processorParam:TextureFormat=Color
 /build:Pony/Eye3.png
 
-#begin Pony/Hair/0/0.png
+#begin Pony/Hair/0/0.gif
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -227,7 +227,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Pony/Hair/0/0.png
+/build:Pony/Hair/0/0.gif
 
 #begin Pony/Hair/0/1.gif
 /importer:TextureImporter
@@ -313,7 +313,7 @@
 /processorParam:TextureFormat=Color
 /build:Pony/Hair/0/7.gif
 
-#begin Pony/Hair/1/0.png
+#begin Pony/Hair/0/default.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -323,7 +323,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Pony/Hair/1/0.png
+/build:Pony/Hair/0/default.png
+
+#begin Pony/Hair/1/0.gif
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Pony/Hair/1/0.gif
 
 #begin Pony/Hair/1/1.gif
 /importer:TextureImporter
@@ -409,7 +421,7 @@
 /processorParam:TextureFormat=Color
 /build:Pony/Hair/1/7.gif
 
-#begin Pony/Hair/2/0.png
+#begin Pony/Hair/1/default.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -419,7 +431,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Pony/Hair/2/0.png
+/build:Pony/Hair/1/default.png
+
+#begin Pony/Hair/2/0.gif
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Pony/Hair/2/0.gif
 
 #begin Pony/Hair/2/1.gif
 /importer:TextureImporter
@@ -505,7 +529,7 @@
 /processorParam:TextureFormat=Color
 /build:Pony/Hair/2/7.gif
 
-#begin Pony/Hair/3/0.png
+#begin Pony/Hair/2/default.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -515,7 +539,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Pony/Hair/3/0.png
+/build:Pony/Hair/2/default.png
+
+#begin Pony/Hair/3/0.gif
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Pony/Hair/3/0.gif
 
 #begin Pony/Hair/3/1.gif
 /importer:TextureImporter
@@ -601,7 +637,7 @@
 /processorParam:TextureFormat=Color
 /build:Pony/Hair/3/7.gif
 
-#begin Pony/Hair/4/0.png
+#begin Pony/Hair/3/default.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -611,7 +647,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Pony/Hair/4/0.png
+/build:Pony/Hair/3/default.png
+
+#begin Pony/Hair/4/0.gif
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Pony/Hair/4/0.gif
 
 #begin Pony/Hair/4/1.gif
 /importer:TextureImporter
@@ -697,7 +745,7 @@
 /processorParam:TextureFormat=Color
 /build:Pony/Hair/4/7.gif
 
-#begin Pony/Hair/5/0.png
+#begin Pony/Hair/4/default.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -707,7 +755,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Pony/Hair/5/0.png
+/build:Pony/Hair/4/default.png
+
+#begin Pony/Hair/5/0.gif
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Pony/Hair/5/0.gif
 
 #begin Pony/Hair/5/1.gif
 /importer:TextureImporter
@@ -792,6 +852,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Pony/Hair/5/7.gif
+
+#begin Pony/Hair/5/default.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Pony/Hair/5/default.png
 
 #begin Pony/Hair/Hair_Default_Front.png
 /importer:TextureImporter

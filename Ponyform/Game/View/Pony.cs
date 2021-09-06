@@ -245,7 +245,7 @@ namespace Ponyform.Game.View {
             if (!Utils.TryConvertVal(data, out GroomInfo info)){
                 return;
             }
-            pony_hair_back.Play(5, 100);
+            if(info.groomPart == GroomPart.Hair) pony_hair_back.Play(5, 100);
             Logger.i("Pony", $"Grooming Started, part = {info.groomPart}, hairStyle = {info.ponyHairStyle}, tailStyle = {info.ponyTailStyle}");
         }
         
