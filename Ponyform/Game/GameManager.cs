@@ -12,7 +12,7 @@ namespace Ponyform.Game
         private AssetManager assetManager;
         private SpriteBatch spriteBatch;
 
-        public GameObject gameRoot;
+        public GameObject gameRoot, menuScene;
         private Environment env;
         private Pony pony;
 
@@ -22,14 +22,18 @@ namespace Ponyform.Game
 
         private FoodBar foodBar;
         private GroomBar groomBar;
-        // private readonly EventManager eventManager;
+        private readonly EventManager _em;
+
+        private bool gameStarted = false;
 
         public GameManager(){ 
             gameInfra = DI.Get<GameInfra>();
             assetManager = DI.Get<AssetManager>();
             // eventManager = DI.Get<EventManager>();
             DI.Register(new GestureManager());
+            menuScene = new Menu();
             gameRoot = new EmptyGameObject();
+            _em.RegisterListener(GameEvent.PlayStarted, startGame);
         }
 
         public void OnGameInit(){
@@ -64,16 +68,28 @@ namespace Ponyform.Game
             foodBar.SetPosition(0, gameInfra.GetGameHeight(), Alignment.BOTTOM_LEFT);
             groomBar.SetPosition(0, gameInfra.GetGameHeight(), Alignment.BOTTOM_LEFT);
         }
-
-        public void Update(GameTime gameTime){
-            gameRoot.Update(gameTime);
+        
+        public void Update(GameTime gameTime) {
+            if (gameStarted) gameRoot.Update(gameTime);
+            else menuScene.Update(gameTime);
+            menuScene.Update(gameTime);
         }
         public void Draw(GameTime gameTime){
             // Logger.i("GM", "Game manager drawing content");
             spriteBatch.Begin();
-            gameRoot.Draw(spriteBatch, Vector2.Zero);
+            if(gameStarted) gameRoot.Draw(spriteBatch, Vector2.Zero);
+            else menuScene.Draw(spriteBatch, Vector2.Zero);
             // spriteBatch.Draw(assetManager.pony_basic, new Vector2(20,20), Color.White);
             spriteBatch.End();
+        }
+
+        public void startGame(object o) {
+            if (gameStarted) return;
+            gameStarted = true;
+        }
+
+        public void quitGame() {
+            DI.Get<Microsoft.Xna.Framework.Game>().Exit();
         }
     }
 }

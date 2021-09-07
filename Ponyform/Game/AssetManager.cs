@@ -26,6 +26,7 @@ namespace Ponyform.Game
         public Texture2D button_feed, button_groom;
         public Texture2D food_apple, food_bb, food_grass, food_milk;
         public Texture2D button_side_bg, button_bottom_bg, groom_bottom_bg;
+        public Texture2D play_button, quit_button;
         public Texture2D star;
         
         // Dialogues
@@ -148,6 +149,8 @@ namespace Ponyform.Game
             button_side_bg = content.Load<Texture2D>("UI/UI_side");
             button_bottom_bg = content.Load<Texture2D>("UI/UI_FoodBar");
             groom_bottom_bg = content.Load<Texture2D>("UI/UI_GroomBar");
+            play_button = content.Load<Texture2D>("UI/UI_Play");
+            quit_button = content.Load<Texture2D>("UI/UI_Quit");
             
             // Dialogues
             dialogue_eat_apple = content.Load<Texture2D>("UI/UI_DiaApple");
