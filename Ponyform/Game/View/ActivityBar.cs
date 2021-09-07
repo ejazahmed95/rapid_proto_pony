@@ -11,6 +11,8 @@ namespace Ponyform.Game.View {
         private Image bg;
         private Button feed, groom;
 
+        private Button pop;
+
         private ActivityType _currentActivity = ActivityType.NONE;
 
         private int _horizontalAmount = 0;
