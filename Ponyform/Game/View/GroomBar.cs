@@ -13,7 +13,7 @@ namespace Ponyform.Game.View {
         private GestureManager _gm;
 
         //private Image bg;
-        private DraggableIcon brush, comb, curlingIron;
+        private DraggableIcon comb, curlingIron;
 
         private int _horizontalAmount = 0;
         private int _verticalAmount = 0;
@@ -43,7 +43,7 @@ namespace Ponyform.Game.View {
 
         private void createView() {
             //bg = new Image(_am.groom_bottom_bg);
-            brush = new DraggableIcon(_am.groom_brush);
+            //brush = new DraggablkeIcon(_am.groom_brush);
             comb = new DraggableIcon(_am.groom_comb);
             curlingIron = new DraggableIcon(_am.groom_curling_iron);
 
@@ -57,9 +57,9 @@ namespace Ponyform.Game.View {
                 Add(gesture);
             }
 
-            AddAll(curlingIron, comb, brush);
+            AddAll(curlingIron, comb);
 
-            _horizontalAmount += 3;
+            _horizontalAmount += 2;
             _verticalAmount += 1;
         }
 
@@ -78,8 +78,8 @@ namespace Ponyform.Game.View {
             curlingIron.SetPosition(xPos, yPos);
             xPos += iconWidth;
             comb.SetPosition(xPos, yPos);
-            xPos += iconWidth;
-            brush.SetPosition(xPos, yPos);
+            //xPos += iconWidth;
+            //brush.SetPosition(xPos, yPos);
 
             SetSize(new Vector2(size.X, size.Y));
             SetVisibility(false);
@@ -98,7 +98,6 @@ namespace Ponyform.Game.View {
                 _visGoal = (info.type == ActivityType.GROOM);
                 if (_visGoal)
                 {
-                    Logger.d("groombar", $"set{_visGoal}");
                     SetVisibility(_visGoal);
                     MoveTo(_enabledPos);
                 }

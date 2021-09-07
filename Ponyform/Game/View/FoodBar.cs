@@ -53,7 +53,7 @@ namespace Ponyform.Game.View {
             milk = new DraggableIcon(_am.food_milk);
             grass = new DraggableIcon(_am.food_grass);
             
-            AddAll( apple, blueberry, milk, grass);
+            AddAll(apple, blueberry, milk, grass);
 
             _horizontalAmount += 4;
             _verticalAmount += 1;
@@ -94,7 +94,6 @@ namespace Ponyform.Game.View {
                 _visGoal = (info.type == ActivityType.FEED);
                 if (_visGoal)
                 {
-                    Logger.d("foodbar", $"set{_visGoal}");
                     SetVisibility(_visGoal);
                     MoveTo(_enabledPos);
                 }
@@ -105,7 +104,6 @@ namespace Ponyform.Game.View {
 
         public override void Update(GameTime gameTime)
         {
-            Logger.d("foodbar", $"{pos}");
             if (_preReached == false && _reached == true)
             {
                 _preReached = true;
