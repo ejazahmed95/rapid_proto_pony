@@ -21,6 +21,7 @@ namespace Ponyform
             IsMouseVisible = true;
             
             // Setup
+            DI.Register(this);
             DI.Register(new GameInfra(this));
             DI.Register<AssetManager>(new AssetManager(Content));
             DI.Register(new SoundManager(Content));

@@ -31,14 +31,14 @@ namespace Ponyform.Game
             assetManager = DI.Get<AssetManager>();
             // eventManager = DI.Get<EventManager>();
             DI.Register(new GestureManager());
-            menuScene = new Menu();
             gameRoot = new EmptyGameObject();
-            _em.RegisterListener(GameEvent.PlayStarted, startGame);
+            //_em.RegisterListener(GameEvent.PlayStarted, startGame);
         }
 
         public void OnGameInit(){
             Logger.i("GM", "Game initialized");
             spriteBatch = gameInfra.SpriteBatch;
+            menuScene = new Menu();
             DI.Register(env = new Environment());
             DI.Register(pony = new Pony());
 
