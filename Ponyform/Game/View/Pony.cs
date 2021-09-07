@@ -11,9 +11,10 @@ using Ponyform.Utilities;
 namespace Ponyform.Game.View {
     public class Pony: GameObject {
         // References
-        private AssetManager _am;
+        private AssetManager _am; 
         public CollisionBox mouthBox, hairBox, tailBox;
         private readonly EventManager _em;
+        private SoundManager _sm;
         
         // View
         private Image pony_mid;
@@ -33,6 +34,7 @@ namespace Ponyform.Game.View {
         public Pony(){
             _am = DI.Get<AssetManager>();
             _em = DI.Get<EventManager>();
+            _sm = DI.Get<SoundManager>();
 
             _currentData = new PonyData();
             _targetData = new PonyData();
@@ -151,7 +153,7 @@ namespace Ponyform.Game.View {
             Vector2 back_ratio, front_ratio;
             switch (_currentData.hairStyle) {
                 case PonyHairStyle.Default:
-                    back_ratio = new Vector2(-0.08f, 0.056f);
+                    back_ratio = new Vector2(-0.18f, 0.056f);
                     front_ratio = new Vector2(0.135f, 0.036f);
                     pony_hair_back.UpdateTextures(_am.pony_hair0_back, _am.pony_hair0_back_1, _am.pony_hair0_back_2, _am.pony_hair0_back_3,_am.pony_hair0_back_4,_am.pony_hair0_back_5,_am.pony_hair0_back_6, _am.pony_hair0_back_7);
                     pony_hair_front.UpdateTextures(_am.pony_hair0_front);
@@ -163,14 +165,14 @@ namespace Ponyform.Game.View {
                     pony_hair_front.UpdateTextures(_am.pony_hair1_front);
                     break;
                 case PonyHairStyle.HairStyle2:
-                    back_ratio = new Vector2(-0.25f, 0.054f);
+                    back_ratio = new Vector2(-0.45f, 0.054f);
                     front_ratio = new Vector2(0.135f, 0.036f);
                     pony_hair_back.UpdateTextures(_am.pony_hair2_back, _am.pony_hair2_back_1, _am.pony_hair2_back_2, _am.pony_hair2_back_3, _am.pony_hair2_back_4, _am.pony_hair2_back_5, _am.pony_hair2_back_6, _am.pony_hair2_back_7);
                     pony_hair_front.UpdateTextures(_am.pony_hair2_front);
                     break;
                 case PonyHairStyle.HairStyle3:
-                    back_ratio = new Vector2(-0.384f, 0.054f);
-                    front_ratio = new Vector2(0.135f, 0.036f);
+                    back_ratio = new Vector2(-0.784f, 0.054f);
+                    front_ratio = new Vector2(0.155f, 0.046f);
                     pony_hair_back.UpdateTextures(_am.pony_hair3_back, _am.pony_hair3_back_1, _am.pony_hair3_back_2, _am.pony_hair3_back_3, _am.pony_hair3_back_4, _am.pony_hair3_back_5, _am.pony_hair3_back_6, _am.pony_hair3_back_7);
                     pony_hair_front.UpdateTextures(_am.pony_hair3_front);
                     break;
@@ -182,7 +184,7 @@ namespace Ponyform.Game.View {
                     break;
                 case PonyHairStyle.HairStyle5:
                     back_ratio = new Vector2(-0.243f, 0.042f);
-                    front_ratio = new Vector2(0.135f, 0.036f);
+                    front_ratio = new Vector2(0.135f, -0.064f);
                     pony_hair_back.UpdateTextures(_am.pony_hair5_back, _am.pony_hair5_back_1, _am.pony_hair5_back_2, _am.pony_hair5_back_3, _am.pony_hair5_back_4, _am.pony_hair5_back_5, _am.pony_hair5_back_6, _am.pony_hair5_back_7);
                     pony_hair_front.UpdateTextures(_am.pony_hair5_front);
                     break;
@@ -216,15 +218,19 @@ namespace Ponyform.Game.View {
             switch (info.foodItem){
                 case Food.Apple:
                     _targetData.bodyColor = Color.Red;
+                    _sm.soundEffects["Eating"].Play();
                     break;
                 case Food.Milk:
                     _targetData.bodyColor = Color.White;
+                    _sm.soundEffects["Drinking"].Play();
                     break;
                 case Food.Grass:
                     _targetData.bodyColor = Color.Green;
+                    _sm.soundEffects["Neigh"].Play();
                     break;
                 case Food.Blueberry:
                     _targetData.bodyColor = Color.Blue;
+                    _sm.soundEffects["Snort"].Play();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

@@ -46,7 +46,8 @@ namespace Ponyform.UI
                             style.positions.Add(new Vector2(609, -347));
                             //...
                             style.size = new Vector2(10, 10);
-                            style.nextColor = new Color(0, 0, 0);
+                            style.nextColor = new Color(255, 255, 255);
+                            style.waitColor = new Color(0, 0, 0);
                             style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle1, ponyTailStyle = PonyTailStyle.TailStyle1 });
                             style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle1, ponyTailStyle = PonyTailStyle.TailStyle1 });
 
@@ -63,7 +64,8 @@ namespace Ponyform.UI
                             style.positions.Add(new Vector2(730, -211));
                             //...
                             style.size = new Vector2(10, 10);
-                            style.nextColor = new Color(0, 0, 0);
+                            style.nextColor = new Color(255, 255, 255);
+                            style.waitColor = new Color(0, 0, 0);
                             style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle2, ponyTailStyle = PonyTailStyle.TailStyle2 });
                             style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle2, ponyTailStyle = PonyTailStyle.TailStyle2 });
 
@@ -80,7 +82,8 @@ namespace Ponyform.UI
                             style.positions.Add(new Vector2(681, -79));
                                                                                                             //...
                             style.size = new Vector2(10, 10);
-                            style.nextColor = new Color(0, 0, 0);
+                            style.nextColor = new Color(255, 255, 255);
+                            style.waitColor = new Color(0, 0, 0);
                             style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle3, ponyTailStyle = PonyTailStyle.TailStyle3 });
                             style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle3, ponyTailStyle = PonyTailStyle.TailStyle3 });
 
@@ -95,7 +98,8 @@ namespace Ponyform.UI
                             style.positions.Add(new Vector2(644, -480));
                             //...
                             style.size = new Vector2(10, 10);
-                            style.nextColor = new Color(0, 0, 0);
+                            style.nextColor = new Color(255, 255, 255);
+                            style.waitColor = new Color(0, 0, 0);
                             style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle4, ponyTailStyle = PonyTailStyle.TailStyle4 });
                             style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle4, ponyTailStyle = PonyTailStyle.TailStyle4 });
 
@@ -113,7 +117,8 @@ namespace Ponyform.UI
                             style.positions.Add(new Vector2(691, -381));
                             //...
                             style.size = new Vector2(10, 10);
-                            style.nextColor = new Color(0, 0, 0);
+                            style.nextColor = new Color(255, 255, 255);
+                            style.waitColor = new Color(0, 0, 0);
                             style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle5, ponyTailStyle = PonyTailStyle.TailStyle5 });
                             style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle5, ponyTailStyle = PonyTailStyle.TailStyle5 });
 
@@ -122,7 +127,8 @@ namespace Ponyform.UI
                             style.draggableIcon = draggableIcon;
                             style.texture = _am.star;
                             style.positions = new List<Vector2>();
-                            style.nextColor = new Color(0, 0, 0);
+                            style.nextColor = new Color(255, 255, 255);
+                            style.waitColor = new Color(0, 0, 0);
                             style.started = () => _em.SendEvent(GameEvent.StartedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle5, ponyTailStyle = PonyTailStyle.TailStyle5 });
                             style.finished = () => _em.SendEvent(GameEvent.StoppedGrooming, new GroomInfo { groomPart = groomPart, ponyHairStyle = PonyHairStyle.HairStyle5, ponyTailStyle = PonyTailStyle.TailStyle5 });
 
@@ -237,6 +243,7 @@ namespace Ponyform.UI
         public Vector2 size;
         public DraggableIcon draggableIcon;
         public Color nextColor;
+        public Color waitColor;
         public Action started;
         public Action finished;
     }

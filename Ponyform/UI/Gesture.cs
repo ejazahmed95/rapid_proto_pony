@@ -22,7 +22,8 @@ namespace Ponyform.UI
         private Action _started;
         private Action _finished;
 
-        private Color _nextColor = new Color(0, 0, 0);
+        private Color _nextColor = new Color(255, 255, 255);
+        private Color _waitColor = new Color(0, 0, 0);
 
         #endregion
 
@@ -42,9 +43,9 @@ namespace Ponyform.UI
 
         #region Methods
 
-        public Gesture(Texture2D texture, List<Vector2> positions, Vector2 size, DraggableIcon draggableIcon, Color nextColor, Action started, Action finished, bool over)
+        public Gesture(Texture2D texture, List<Vector2> positions, Vector2 size, DraggableIcon draggableIcon, Color nextColor, Color waitColor, Action started, Action finished, bool over)
         {
-            ResetGesture(texture, positions, size, draggableIcon, nextColor, started, finished, over);
+            ResetGesture(texture, positions, size, draggableIcon, nextColor, waitColor, started, finished, over);
         }
 
         public Gesture(GestureAttributes gestureAttributes, bool over)
@@ -86,11 +87,12 @@ namespace Ponyform.UI
 
         }
 
-        public void ResetGesture(Texture2D texture, List<Vector2> positions, Vector2 size, DraggableIcon draggableIcon, Color nextColor, Action started, Action finished, bool over)
+        public void ResetGesture(Texture2D texture, List<Vector2> positions, Vector2 size, DraggableIcon draggableIcon, Color nextColor, Color waitColor, Action started, Action finished, bool over)
         {
             Positions = positions;
             _draggableIcon = draggableIcon;
             _nextColor = nextColor;
+            _waitColor = waitColor;
 
             if (_collisionBoxes != null)
             {
@@ -122,6 +124,7 @@ namespace Ponyform.UI
                 Add(collisionBox);
 
                 Image image = new Image(texture);
+                image.SetColor(_waitColor);
                 image.SetPosition(pos * gameInfra.scale);
                 _images.Enqueue(image);
                 Add(image);
@@ -138,6 +141,7 @@ namespace Ponyform.UI
             Positions = gestureAttributes.positions;
             _draggableIcon = gestureAttributes.draggableIcon;
             _nextColor = gestureAttributes.nextColor;
+            _waitColor = gestureAttributes.waitColor;
 
             if (_collisionBoxes != null)
             {
@@ -167,8 +171,8 @@ namespace Ponyform.UI
                 collisionBox.SetPosition(pos * gameInfra.scale);
                 _collisionBoxes.Enqueue(collisionBox);
                 Add(collisionBox);
-
                 Image image = new Image(gestureAttributes.texture);
+                image.SetColor(_waitColor);
                 image.SetPosition(pos * gameInfra.scale);
                 _images.Enqueue(image);
                 Add(image);
