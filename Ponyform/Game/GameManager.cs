@@ -49,9 +49,9 @@ namespace Ponyform.Game
         }
 
         private void createView() {
-            aBar = new ActivityBar();
-            foodBar = new FoodBar();
-            groomBar = new GroomBar();
+            aBar = new ActivityBar(assetManager.button_side_bg);
+            foodBar = new FoodBar(assetManager.button_bottom_bg);
+            groomBar = new GroomBar(assetManager.groom_bottom_bg);
             // Add to Gameroot
             gameRoot.Add(env);
             gameRoot.Add(pony);
@@ -65,8 +65,14 @@ namespace Ponyform.Game
         private void arrangeView() {
             pony.SetPosition(gameInfra.GetGameWidth()*0.4f, gameInfra.GetGameHeight()*0.25f);
             aBar.SetPosition(gameInfra.GetGameWidth(), 0, Alignment.TOP_RIGHT);
+            aBar.SetIfEnabledPossition(new Vector2(foodBar.pos.X + foodBar.size.X * gameInfra.scale, foodBar.pos.Y), new Vector2(foodBar.pos.X + foodBar.size.X * gameInfra.scale * 1.3f, foodBar.pos.Y));
+            aBar.SetPosition(new Vector2(foodBar.pos.X + foodBar.size.X * gameInfra.scale * 1.3f, foodBar.pos.Y));
             foodBar.SetPosition(0, gameInfra.GetGameHeight(), Alignment.BOTTOM_LEFT);
+            foodBar.SetIfEnabledPossition(foodBar.pos, new Vector2 (foodBar.pos.X, foodBar.pos.Y + foodBar.size.Y * gameInfra.scale));
+            foodBar.SetPosition(new Vector2(foodBar.pos.X, foodBar.pos.Y + foodBar.size.Y * gameInfra.scale));
             groomBar.SetPosition(0, gameInfra.GetGameHeight(), Alignment.BOTTOM_LEFT);
+            groomBar.SetIfEnabledPossition(groomBar.pos, new Vector2(groomBar.pos.X, groomBar.pos.Y + foodBar.size.Y * gameInfra.scale));
+            groomBar.SetPosition(new Vector2(groomBar.pos.X, groomBar.pos.Y + groomBar.size.Y * gameInfra.scale));
         }
         
         public void Update(GameTime gameTime) {

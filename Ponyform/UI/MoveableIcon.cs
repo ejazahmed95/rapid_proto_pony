@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Ponyform.UI
 {
-    class MoveableIcon : Image
+    public class MoveableIcon : Image
     {
         #region Fields 
 
-        private bool _reached = true;
+        protected bool _reached = true;
 
         private Vector2 _startPosition;
 
@@ -39,11 +39,16 @@ namespace Ponyform.UI
                 {
                     _reached = true;
                     _totalTime = 0f;
+                    SetPosition(Destination);
                 }
-                _totalTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                _progress = _totalTime / Duration;
-                Vector2 position = new Vector2(MathHelper.SmoothStep(_startPosition.X, Destination.X, _progress), MathHelper.SmoothStep(_startPosition.Y, Destination.Y, _progress));
-                SetPosition(position);
+                else
+                {
+                    _totalTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    _progress = _totalTime / Duration;
+                    Vector2 position = new Vector2(MathHelper.SmoothStep(_startPosition.X, Destination.X, _progress), MathHelper.SmoothStep(_startPosition.Y, Destination.Y, _progress));
+                    SetPosition(position);
+                }
+               
             }
 
             base.Update(gameTime);

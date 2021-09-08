@@ -153,7 +153,7 @@ namespace Ponyform.Game.View {
             Vector2 back_ratio, front_ratio;
             switch (_currentData.hairStyle) {
                 case PonyHairStyle.Default:
-                    back_ratio = new Vector2(-0.18f, 0.056f);
+                    back_ratio = new Vector2(-0.23f, 0.056f);
                     front_ratio = new Vector2(0.135f, 0.036f);
                     pony_hair_back.UpdateTextures(_am.pony_hair0_back, _am.pony_hair0_back_1, _am.pony_hair0_back_2, _am.pony_hair0_back_3,_am.pony_hair0_back_4,_am.pony_hair0_back_5,_am.pony_hair0_back_6, _am.pony_hair0_back_7);
                     pony_hair_front.UpdateTextures(_am.pony_hair0_front);
@@ -165,7 +165,7 @@ namespace Ponyform.Game.View {
                     pony_hair_front.UpdateTextures(_am.pony_hair1_front);
                     break;
                 case PonyHairStyle.HairStyle2:
-                    back_ratio = new Vector2(-0.45f, 0.054f);
+                    back_ratio = new Vector2(-0.48f, 0.054f);
                     front_ratio = new Vector2(0.135f, 0.036f);
                     pony_hair_back.UpdateTextures(_am.pony_hair2_back, _am.pony_hair2_back_1, _am.pony_hair2_back_2, _am.pony_hair2_back_3, _am.pony_hair2_back_4, _am.pony_hair2_back_5, _am.pony_hair2_back_6, _am.pony_hair2_back_7);
                     pony_hair_front.UpdateTextures(_am.pony_hair2_front);

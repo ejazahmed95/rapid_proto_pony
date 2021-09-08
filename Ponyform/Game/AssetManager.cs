@@ -23,7 +23,7 @@ namespace Ponyform.Game
         public Texture2D pony_hair5_back, pony_hair5_back_1, pony_hair5_back_2, pony_hair5_back_3, pony_hair5_back_4, pony_hair5_back_5, pony_hair5_back_6, pony_hair5_back_7;
         
         // UI
-        public Texture2D button_feed, button_groom;
+        public Texture2D button_feed, button_groom, arrow_bottom;
         public Texture2D food_apple, food_bb, food_grass, food_milk;
         public Texture2D button_side_bg, button_bottom_bg, groom_bottom_bg;
         public Texture2D play_button, quit_button;
@@ -149,6 +149,7 @@ namespace Ponyform.Game
             button_side_bg = content.Load<Texture2D>("UI/UI_side");
             button_bottom_bg = content.Load<Texture2D>("UI/UI_FoodBar");
             groom_bottom_bg = content.Load<Texture2D>("UI/UI_GroomBar");
+            arrow_bottom = content.Load<Texture2D>("UI/UI_Arrow");
             play_button = content.Load<Texture2D>("UI/UI_Play");
             quit_button = content.Load<Texture2D>("UI/UI_Quit");
             
